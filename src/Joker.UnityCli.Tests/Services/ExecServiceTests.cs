@@ -1,6 +1,9 @@
+using System.Net;
+using System.Net.Sockets;
 using System.Text.Json;
 using FluentAssertions;
 using Joker.UnityCli.Models;
+using Joker.UnityCli.Services;
 using Xunit;
 
 namespace Joker.UnityCli.Tests.Services;
@@ -101,5 +104,91 @@ public class ExecServiceTests
         var result = new ExecResult();
 
         result.Type.Should().Be("exec_result");
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_WithMockServer_ReturnsResult()
+    {
+        var listener = new TcpListener(IPAddress.Loopback, 0);
+        listener.Start();
+        var port = ((IPEndPoint)listener.LocalEndpoint).Port;
+
+        var tempDir = Path.Combine(Path.GetTempPath(), "joker-test-" + Guid.NewGuid());
+        Directory.CreateDirectory(tempDir);
+        var jokerDir = Path.Combine(tempDir, ".joker-unity");
+        Directory.CreateDirectory(jokerDir);
+        await File.WriteAllTextAsync(Path.Combine(jokerDir, "server.json"),
+            JsonSerializer.Serialize(new { port, pid = Environment.ProcessId }));
+
+        var serverTask = Task.Run(async () =>
+        {
+            var client = await listener.AcceptTcpClientAsync();
+            using var reader = new StreamReader(client.GetStream());
+            using var writer = new StreamWriter(client.GetStream()) { AutoFlush = true };
+            var line = await reader.ReadLineAsync();
+            var response = JsonSerializer.Serialize(new ExecResult
+            {
+                Type = "exec_result", Id = "test", Success = true,
+                Result = "42", DurationMs = 5
+            }, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            await writer.WriteLineAsync(response);
+            client.Close();
+        });
+
+        var service = new ExecService();
+        var result = await service.ExecuteAsync(tempDir, "6*7", "script", 5000, CancellationToken.None);
+
+        result.Success.Should().BeTrue();
+        result.Result.Should().Be("42");
+
+        listener.Stop();
+        Directory.Delete(tempDir, true);
+    }
+
+    [Fact]
+    public void ReadServerPort_WhenFileMissing_ThrowsFileNotFoundException()
+    {
+        var act = () => ExecService.ReadServerPort(Path.GetTempPath());
+        act.Should().Throw<FileNotFoundException>();
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_SendsCorrectMode()
+    {
+        var listener = new TcpListener(IPAddress.Loopback, 0);
+        listener.Start();
+        var port = ((IPEndPoint)listener.LocalEndpoint).Port;
+
+        var tempDir = Path.Combine(Path.GetTempPath(), "joker-test-" + Guid.NewGuid());
+        Directory.CreateDirectory(tempDir);
+        var jokerDir = Path.Combine(tempDir, ".joker-unity");
+        Directory.CreateDirectory(jokerDir);
+        await File.WriteAllTextAsync(Path.Combine(jokerDir, "server.json"),
+            JsonSerializer.Serialize(new { port, pid = Environment.ProcessId }));
+
+        string? receivedLine = null;
+        var serverTask = Task.Run(async () =>
+        {
+            var client = await listener.AcceptTcpClientAsync();
+            using var reader = new StreamReader(client.GetStream());
+            using var writer = new StreamWriter(client.GetStream()) { AutoFlush = true };
+            receivedLine = await reader.ReadLineAsync();
+            var response = JsonSerializer.Serialize(new ExecResult
+            {
+                Type = "exec_result", Id = "test", Success = true, DurationMs = 1
+            }, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            await writer.WriteLineAsync(response);
+            client.Close();
+        });
+
+        var service = new ExecService();
+        await service.ExecuteAsync(tempDir, "code", "compile", 5000, CancellationToken.None);
+
+        receivedLine.Should().NotBeNull();
+        var request = JsonSerializer.Deserialize<ExecRequest>(receivedLine!, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+        request!.Mode.Should().Be("compile");
+
+        listener.Stop();
+        Directory.Delete(tempDir, true);
     }
 }
