@@ -29,7 +29,7 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具（
 - 命名：类 PascalCase，私有字段 _camelCase，常量 PascalCase
 - 一个文件一个类型，文件名与类型名一致
 - 不写显而易见的注释，只在 WHY 不明显时加注释
-- 完整规范见 `docs/coding-standards.md`，编码时必须先阅读
+- 完整规范见 `docs~/coding-standards.md`，编码时必须先阅读
 
 ## 架构概览（摘要）
 
@@ -39,12 +39,12 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具（
 - Unity Editor 侧：TCP 服务器（`[InitializeOnLoad]` 自启动）+ Roslyn 脚本执行
 - exec 命令通过 TCP 连接 Unity Editor 内置服务器，支持 script（语句级）和 compile（完整文件）两种模式
 - 开发测试在 Development/ Unity 工程中进行
-- 详细架构见 `docs/architecture.md`，修改代码前须先了解当前架构
+- 详细架构见 `docs~/architecture.md`，修改代码前须先了解当前架构
 
 ## 目录结构
 
 ```
-├── src/                  # CLI 源码（.NET 项目）
+├── src~/                 # CLI 源码（.NET 项目，~ 后缀避免 Unity 扫描）
 │   ├── Joker.UnityCli/   # 主程序（Commands, Services, Models）
 │   └── Tests/            # 单元测试
 ├── package.json          # UPM 包清单
@@ -57,22 +57,24 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具（
 ├── Runtime/              # Runtime 代码
 ├── Tests/                # Unity 测试
 ├── Tools~/               # 预编译 CLI 二进制（构建产物）
-├── docs/                 # 文档
-└── Development/          # 开发用 Unity 工程（不发布）
+├── docs~/                # 文档
+└── Development~/         # 开发用 Unity 工程（不发布）
 ```
+
+注意：`~` 后缀目录会被 Unity 资产管线忽略，这是 UPM 包开发的标准约定。
 
 ## 构建与测试
 
 ```bash
 # 运行单元测试
-cd src && dotnet test
+cd src~ && dotnet test
 
 # 运行 CLI（开发模式）
-cd src/Joker.UnityCli && dotnet run -- info --project ../../Development
+cd src~/Joker.UnityCli && dotnet run -- info --project ../../Development~
 
 # 编译发布
-cd src/Joker.UnityCli && dotnet publish -c Release -o ../../Tools~/win-x64
+cd src~/Joker.UnityCli && dotnet publish -c Release -o ../../Tools~/win-x64
 
 # 执行代码（需 Unity Editor 打开项目）
-Tools~/win-x64/joker-unity exec "1+1" --project ../../Development --json
+Tools~/win-x64/joker-unity exec "1+1" --project ../../Development~ --json
 ```
