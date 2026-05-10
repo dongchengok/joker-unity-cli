@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/dongc/.claude/**)",
+      "Bash(npm list *)",
+      "WebSearch",
+      "mcp__web-search-prime__web_search_prime",
+      "mcp__web-reader__webReader",
+      "Bash(git mv *)",
+      "Bash(mkdir -p Development)",
+      "Bash(cp -r joker-unity-cli/* Development/)",
+      "Bash(cp -r joker-unity-cli/.vs Development/)",
+      "Bash(dotnet --version)",
+      "Bash(git add *)"
+    ]
+  }
+}
