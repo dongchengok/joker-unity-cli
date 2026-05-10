@@ -217,6 +217,54 @@ joker-unity exec --file /path/to/script.cs --project /path/to/project
 }
 ```
 
+### `joker-unity logs`
+
+显示 Unity Editor 日志条目（编译错误和警告）。
+
+```
+joker-unity logs [选项]
+```
+
+**选项：**
+
+| 选项 | 说明 |
+|------|------|
+| `--errors` | 只显示编译错误 |
+| `--tail <N>` | 显示最近 N 条（默认 50） |
+| `-p, --project <PATH>` | Unity 项目路径（不指定时自动检测） |
+| `--json` | 以 JSON 格式输出 |
+
+**示例：**
+
+```bash
+# 显示所有日志条目
+joker-unity logs
+
+# 只显示编译错误
+joker-unity logs --errors
+
+# 限制 10 条
+joker-unity logs --tail 10 --json
+
+# 指定项目路径
+joker-unity logs --project /path/to/project --json
+```
+
+**JSON 输出示例（`--json`）：**
+
+```json
+[
+  {
+    "filePath": "Assets/Scripts/Player.cs",
+    "line": 10,
+    "column": 5,
+    "severity": "error",
+    "code": "CS0234",
+    "message": "The name 'foo' does not exist in the current context"
+  }
+]
+```
+
 ## 退出码
 
 | 退出码 | 说明 |
