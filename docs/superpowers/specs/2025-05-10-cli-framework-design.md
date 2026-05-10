@@ -54,7 +54,7 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具，
 ### 三层结构
 
 ```
-用户终端 → joker-cli <command>
+用户终端 → joker-unity <command>
               ↓
          Commands 层（Spectre 命令定义）
               ↓
@@ -85,7 +85,7 @@ CLI 启动
 
 **检测顺序：**
 1. `--unity` 命令行参数
-2. 配置文件（`~/.joker-cli/config.json`）
+2. 配置文件（`~/.joker-unity/config.json`）
 3. 环境变量 `UNITY_HOME`
 4. 自动扫描默认安装路径：
    - Windows: `C:\Program Files\Unity\Hub\Editor\*\Editor\Unity.exe`
@@ -145,11 +145,11 @@ Unity.exe -batchmode -quit -projectPath <path> -executeMethod <method> -buildTar
 ## CLI 命令
 
 ```
-joker-cli                              显示帮助
-joker-cli info [path]                  显示项目信息
-joker-cli build <platform> [options]   触发构建
-joker-cli assets list [path]           列出资源
-joker-cli assets search <query>        搜索资源
+joker-unity                              显示帮助
+joker-unity info [path]                  显示项目信息
+joker-unity build <platform> [options]   触发构建
+joker-unity assets list [path]           列出资源
+joker-unity assets search <query>        搜索资源
 ```
 
 ### 全局选项
@@ -176,7 +176,7 @@ joker-cli assets search <query>        搜索资源
 
 ## 后续扩展（不在本次范围内）
 
-- `joker-cli package list/install/remove` — 包管理
-- `joker-cli scene list/open` — 场景管理
+- `joker-unity package list/install/remove` — 包管理
+- `joker-unity scene list/open` — 场景管理
 - Unity Editor 内集成（菜单项调用 CLI）
 - CI/CD 自动构建和发布流程

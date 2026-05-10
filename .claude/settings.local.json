@@ -11,7 +11,20 @@
       "Bash(cp -r joker-unity-cli/* Development/)",
       "Bash(cp -r joker-unity-cli/.vs Development/)",
       "Bash(dotnet --version)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(dotnet new *)",
+      "Bash(dotnet sln *)",
+      "Bash(dotnet add *)",
+      "Bash(dotnet build *)",
+      "Bash(dotnet test *)",
+      "Bash(git reset *)",
+      "Bash(dotnet tool *)",
+      "Bash(python3 -c ' *)",
+      "Bash(mkdir -p /tmp/CheckTypes)",
+      "Bash(cp Joker.UnityCli/bin/Debug/net8.0/Spectre.Console.Cli.Extensions.DependencyInjection.dll /tmp/CheckTypes/)",
+      "Bash(dotnet remove *)",
+      "Bash(dotnet run *)"
     ]
   }
 }

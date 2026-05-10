@@ -54,9 +54,9 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具，
 
 | 命令 | 用途 |
 |------|------|
-| `joker-cli info [path]` | 显示项目信息（名称、版本、包列表） |
-| `joker-cli build <platform>` | 触发构建 |
-| `joker-cli assets [query]` | 列出/搜索资源 |
+| `joker-unity info [path]` | 显示项目信息（名称、版本、包列表） |
+| `joker-unity build <platform>` | 触发构建 |
+| `joker-unity assets [query]` | 列出/搜索资源 |
 
 ### Models
 

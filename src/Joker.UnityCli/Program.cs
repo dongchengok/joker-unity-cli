@@ -1,7 +1,34 @@
-// Entry point will be implemented in Task 6
-// This is a placeholder to allow the project to compile
-
+using Joker.UnityCli.Commands;
+using Joker.UnityCli.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console.Cli;
 
-var app = new CommandApp();
-return 0;
+namespace Joker.UnityCli;
+
+class Program
+{
+    static int Main(string[] args)
+    {
+        var services = new ServiceCollection();
+        services.AddSingleton<IProjectDetector, ProjectDetector>();
+        services.AddSingleton<IUnityLocator, UnityLocator>();
+        services.AddSingleton<IAssetService, AssetService>();
+        services.AddSingleton<IBuildService, BuildService>();
+
+        var registrar = new DependencyInjectionTypeRegistrar(services);
+        var app = new CommandApp(registrar);
+
+        app.Configure(config =>
+        {
+            config.SetApplicationName("joker-unity");
+            config.AddCommand<InfoCommand>("info")
+                .WithDescription("Display Unity project information");
+            config.AddCommand<BuildCommand>("build")
+                .WithDescription("Build the Unity project");
+            config.AddCommand<AssetsCommand>("assets")
+                .WithDescription("List or search project assets");
+        });
+
+        return app.Run(args);
+    }
+}
