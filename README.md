@@ -236,13 +236,13 @@ joker-unity exec --file /path/to/script.cs --project /path/to/project
 
 ```bash
 # 运行测试
-cd src && dotnet test
+cd .src && dotnet test
 
 # 运行 CLI（开发模式）
-cd src/Joker.UnityCli && dotnet run -- <command>
+cd .src/Joker.UnityCli && dotnet run -- <command>
 
 # 编译发布
-cd src/Joker.UnityCli && dotnet publish -c Release -o ../../Tools~/win-x64
+cd .src/Joker.UnityCli && dotnet publish -c Release -o ../../Tools~/win-x64
 ```
 
 ## 许可证
