@@ -15,6 +15,7 @@ class Program
         services.AddSingleton<IAssetService, AssetService>();
         services.AddSingleton<IBuildService, BuildService>();
         services.AddSingleton<IExecService, ExecService>();
+        services.AddSingleton<ILogService, LogService>();
 
         var registrar = new DependencyInjectionTypeRegistrar(services);
         var app = new CommandApp(registrar);
@@ -30,6 +31,8 @@ class Program
                 .WithDescription("List or search project assets");
             config.AddCommand<ExecCommand>("exec")
                 .WithDescription("Execute C# code in Unity Editor");
+            config.AddCommand<LogsCommand>("logs")
+                .WithDescription("Show Unity Editor log entries");
         });
 
         return app.Run(args);
