@@ -84,6 +84,7 @@ namespace Joker.UnityCli.Editor.ScriptExecution
             }
         }
 
+#pragma warning disable CS1998
         private static async Task<ExecResult> ExecuteCompileAsync(string code, int timeoutMs, CancellationToken ct)
         {
             var sw = Stopwatch.StartNew();

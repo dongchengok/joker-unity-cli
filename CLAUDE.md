@@ -10,6 +10,17 @@
 - 存在更好的方案时，主动提出并解释理由
 - 不确定时坦诚表达，不装懂
 
+## 开发流程（红线要求）
+
+所有功能开发、Bug 修复、架构变更的计划和实施，**必须**使用以下 Superpowers 技能，不得跳过：
+
+1. **`superpowers:brainstorming`** — 协作式需求分析和方案设计，任何新功能或变更必须先经过 brainstorming 流程
+2. **`superpowers:writing-plans`** — 编写详细实施计划，计划文件保存到 `.docs/superpowers/plans/` 目录
+3. **`superpowers:subagent-driven-development`** — 通过子代理分任务执行计划，每个任务完成后进行规范合规审查和代码质量审查
+4. **`superpowers:test-driven-development`** — 严格 TDD 流程（红-绿-重构），先写失败测试，再写最小实现
+
+**不得跳过的原因：** 这些技能确保了设计充分讨论、计划完整可执行、代码质量有保障、测试覆盖到位。跳过任何环节都会导致返工和质量下降。
+
 ## 项目概述
 
 joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具（`joker-unity`），帮助 AI 智能体集成 Unity 开发流程。

@@ -1,3 +1,6 @@
+# NuGet 临时文件
+*.nupkg
+
 # Unity 开发工程（.development/）忽略规则
 .development/[Ll]ibrary/
 .development/[Tt]emp/
@@ -51,3 +54,6 @@ sysinfo.txt
 Thumbs.db
 .idea/
 .vscode/
+
+# Claude Code local settings
+.claude/settings.local.json

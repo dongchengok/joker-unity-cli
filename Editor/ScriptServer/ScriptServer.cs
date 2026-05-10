@@ -1,7 +1,9 @@
+#nullable enable
 using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Joker.UnityCli.Editor.ScriptServer
@@ -27,13 +29,19 @@ namespace Joker.UnityCli.Editor.ScriptServer
             Debug.Log($"[JokerUnity] Script server started on port {_port}");
 
             var ct = _cts.Token;
-            System.Threading.Tasks.Task.Run(async () =>
+            Task.Run(async () =>
             {
                 try
                 {
                     while (!ct.IsCancellationRequested)
                     {
-                        var client = await _listener.AcceptTcpClientAsync(ct);
+                        var acceptTask = _listener.AcceptTcpClientAsync();
+                        var tcs = new TaskCompletionSource<TcpClient>();
+                        using var reg = ct.Register(() => tcs.TrySetCanceled());
+                        var completed = await Task.WhenAny(acceptTask, tcs.Task);
+                        if (completed == tcs.Task)
+                            break;
+                        var client = await acceptTask;
                         await ScriptServerSession.HandleAsync(client, ct);
                     }
                 }
