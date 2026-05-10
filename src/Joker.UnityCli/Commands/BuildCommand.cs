@@ -1,4 +1,6 @@
 using System.ComponentModel;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Joker.UnityCli.Services;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -21,7 +23,7 @@ public class BuildCommand : AsyncCommand<BuildCommand.Settings>
         _buildService = buildService;
     }
 
-    public class Settings : CommandSettings
+    public class Settings : GlobalCommandSettings
     {
         [CommandArgument(0, "[PLATFORM]")]
         [Description("Build target platform (e.g. Win64, Android, iOS).")]
@@ -53,6 +55,12 @@ public class BuildCommand : AsyncCommand<BuildCommand.Settings>
             var project = _projectDetector.Detect(settings.ProjectPath);
             if (project == null)
             {
+                if (settings.JsonOutput)
+                {
+                    WriteJsonError("No Unity project found at the specified path.");
+                    return 1;
+                }
+
                 AnsiConsole.MarkupLine("[red]Error:[/] No Unity project found at the specified path.");
                 return 1;
             }
@@ -63,6 +71,12 @@ public class BuildCommand : AsyncCommand<BuildCommand.Settings>
             var project = _projectDetector.DetectFromCurrentDirectory(Environment.CurrentDirectory);
             if (project == null)
             {
+                if (settings.JsonOutput)
+                {
+                    WriteJsonError("No Unity project found in current directory or parents.");
+                    return 1;
+                }
+
                 AnsiConsole.MarkupLine("[red]Error:[/] No Unity project found in current directory or parents.");
                 return 1;
             }
@@ -73,6 +87,12 @@ public class BuildCommand : AsyncCommand<BuildCommand.Settings>
         var platform = settings.Platform;
         if (string.IsNullOrWhiteSpace(platform))
         {
+            if (settings.JsonOutput)
+            {
+                WriteJsonError("Platform is required. Usage: build <PLATFORM>");
+                return 1;
+            }
+
             AnsiConsole.MarkupLine("[red]Error:[/] Platform is required. Usage: build <PLATFORM>");
             return 1;
         }
@@ -81,6 +101,12 @@ public class BuildCommand : AsyncCommand<BuildCommand.Settings>
         var unity = _unityLocator.Locate(settings.Unity);
         if (unity == null)
         {
+            if (settings.JsonOutput)
+            {
+                WriteJsonError($"Could not locate Unity installation{(settings.Unity != null ? $" for '{settings.Unity}'" : "")}.");
+                return 1;
+            }
+
             AnsiConsole.MarkupLine($"[red]Error:[/] Could not locate Unity installation{(settings.Unity != null ? $" for '{settings.Unity}'" : "")}.");
             return 1;
         }
@@ -90,9 +116,12 @@ public class BuildCommand : AsyncCommand<BuildCommand.Settings>
         var executeMethod = "JokerBuildPipeline.BuildPlayer";
         var buildTarget = platform;
 
-        AnsiConsole.MarkupLine($"[cyan]Building {projectPath}[/] for [green]{platform}[/]...");
-        AnsiConsole.MarkupLine($"  Unity: {unity.Path} ({unity.Version})");
-        AnsiConsole.MarkupLine($"  Output: {outputPath}");
+        if (!settings.JsonOutput)
+        {
+            AnsiConsole.MarkupLine($"[cyan]Building {projectPath}[/] for [green]{platform}[/]...");
+            AnsiConsole.MarkupLine($"  Unity: {unity.Path} ({unity.Version})");
+            AnsiConsole.MarkupLine($"  Output: {outputPath}");
+        }
 
         var result = await _buildService.BuildAsync(
             projectPath,
@@ -101,6 +130,12 @@ public class BuildCommand : AsyncCommand<BuildCommand.Settings>
             executeMethod,
             outputPath,
             scenes);
+
+        if (settings.JsonOutput)
+        {
+            Console.WriteLine(JsonSerializer.Serialize(result, JsonSerializerOptions));
+            return result.Success ? 0 : 1;
+        }
 
         if (result.Success)
         {
@@ -117,4 +152,17 @@ public class BuildCommand : AsyncCommand<BuildCommand.Settings>
             return 1;
         }
     }
+
+    private static void WriteJsonError(string message)
+    {
+        var errorObj = new { error = message };
+        Console.Error.WriteLine(JsonSerializer.Serialize(errorObj, JsonSerializerOptions));
+    }
+
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new()
+    {
+        WriteIndented = true,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        Converters = { new JsonStringEnumConverter() }
+    };
 }

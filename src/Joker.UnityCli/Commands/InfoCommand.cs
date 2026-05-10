@@ -1,4 +1,6 @@
 using System.ComponentModel;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Joker.UnityCli.Models;
 using Joker.UnityCli.Services;
 using Spectre.Console;
@@ -15,7 +17,7 @@ public class InfoCommand : Command<InfoCommand.Settings>
         _projectDetector = projectDetector;
     }
 
-    public class Settings : CommandSettings
+    public class Settings : GlobalCommandSettings
     {
         [CommandOption("-p|--project <PATH>")]
         [Description("Path to the Unity project. If not specified, detects from current directory.")]
@@ -37,8 +39,21 @@ public class InfoCommand : Command<InfoCommand.Settings>
 
         if (project == null)
         {
+            if (settings.JsonOutput)
+            {
+                var errorObj = new { error = "No Unity project found at the specified path." };
+                Console.Error.WriteLine(JsonSerializer.Serialize(errorObj, JsonSerializerOptions));
+                return 1;
+            }
+
             AnsiConsole.MarkupLine("[red]Error:[/] No Unity project found at the specified path.");
             return 1;
+        }
+
+        if (settings.JsonOutput)
+        {
+            Console.WriteLine(JsonSerializer.Serialize(project, JsonSerializerOptions));
+            return 0;
         }
 
         var table = new Table();
@@ -71,4 +86,11 @@ public class InfoCommand : Command<InfoCommand.Settings>
 
         return 0;
     }
+
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new()
+    {
+        WriteIndented = true,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        Converters = { new JsonStringEnumConverter() }
+    };
 }

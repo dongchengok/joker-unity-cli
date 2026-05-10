@@ -1,4 +1,6 @@
 using System.ComponentModel;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Joker.UnityCli.Services;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -16,7 +18,7 @@ public class AssetsCommand : Command<AssetsCommand.Settings>
         _assetService = assetService;
     }
 
-    public class Settings : CommandSettings
+    public class Settings : GlobalCommandSettings
     {
         [CommandArgument(0, "[QUERY]")]
         [Description("Optional search query to filter assets.")]
@@ -36,6 +38,12 @@ public class AssetsCommand : Command<AssetsCommand.Settings>
             var project = _projectDetector.Detect(settings.ProjectPath);
             if (project == null)
             {
+                if (settings.JsonOutput)
+                {
+                    WriteJsonError("No Unity project found at the specified path.");
+                    return 1;
+                }
+
                 AnsiConsole.MarkupLine("[red]Error:[/] No Unity project found at the specified path.");
                 return 1;
             }
@@ -46,6 +54,12 @@ public class AssetsCommand : Command<AssetsCommand.Settings>
             var project = _projectDetector.DetectFromCurrentDirectory(Environment.CurrentDirectory);
             if (project == null)
             {
+                if (settings.JsonOutput)
+                {
+                    WriteJsonError("No Unity project found in current directory or parents.");
+                    return 1;
+                }
+
                 AnsiConsole.MarkupLine("[red]Error:[/] No Unity project found in current directory or parents.");
                 return 1;
             }
@@ -58,19 +72,38 @@ public class AssetsCommand : Command<AssetsCommand.Settings>
         if (!string.IsNullOrWhiteSpace(settings.Query))
         {
             assets = _assetService.SearchAssets(assetsPath, settings.Query);
-            AnsiConsole.MarkupLine($"[cyan]Searching assets matching:[/] [yellow]'{settings.Query}'[/]");
         }
         else
         {
             assets = _assetService.ListAssets(assetsPath);
-            AnsiConsole.MarkupLine("[cyan]Listing all assets:[/]");
         }
 
         var assetList = assets.ToList();
         if (assetList.Count == 0)
         {
+            if (settings.JsonOutput)
+            {
+                Console.WriteLine("[]");
+                return 0;
+            }
+
             AnsiConsole.MarkupLine("[yellow]No assets found.[/]");
             return 0;
+        }
+
+        if (settings.JsonOutput)
+        {
+            Console.WriteLine(JsonSerializer.Serialize(assetList, JsonSerializerOptions));
+            return 0;
+        }
+
+        if (!string.IsNullOrWhiteSpace(settings.Query))
+        {
+            AnsiConsole.MarkupLine($"[cyan]Searching assets matching:[/] [yellow]'{settings.Query}'[/]");
+        }
+        else
+        {
+            AnsiConsole.MarkupLine("[cyan]Listing all assets:[/]");
         }
 
         var table = new Table();
@@ -88,4 +121,17 @@ public class AssetsCommand : Command<AssetsCommand.Settings>
 
         return 0;
     }
+
+    private static void WriteJsonError(string message)
+    {
+        var errorObj = new { error = message };
+        Console.Error.WriteLine(JsonSerializer.Serialize(errorObj, JsonSerializerOptions));
+    }
+
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new()
+    {
+        WriteIndented = true,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        Converters = { new JsonStringEnumConverter() }
+    };
 }
