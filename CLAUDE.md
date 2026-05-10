@@ -12,16 +12,16 @@
 
 ## 项目概述
 
-joker-unity-cli 是一个 Unity UPM 插件包，安装后提供 CLI 功能，帮助 AI 智能体集成 Unity 开发流程。
+joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具（`joker-unity`），帮助 AI 智能体集成 Unity 开发流程。
 - 用户通过 Unity Package Manager 添加 git URL 安装
-- 插件提供 Editor 扩展 + 命令行工具
+- CLI 支持文本输出（人类）和 JSON 输出（`--json`，AI/程序调用）
 
 ## 技术栈
 
-- **语言：** C# / .NET 8+（与 Unity 兼容的 C# 版本）
+- **语言：** C# / .NET 8+
 - **CLI 框架：** Spectre.Console.Cli
-- **测试框架：** xUnit（Tests/Editor/ 目录）
-- **Unity 交互：** UnityEditor batch mode + 直接程序集引用
+- **测试框架：** xUnit + FluentAssertions
+- **Unity 交互：** 文件系统读写 + Unity.exe batch mode
 
 ## 编码规范（摘要）
 
@@ -33,24 +33,36 @@ joker-unity-cli 是一个 Unity UPM 插件包，安装后提供 CLI 功能，帮
 
 ## 架构概览（摘要）
 
-- UPM 包结构：Editor/（Editor + CLI 代码）、Runtime/（Runtime 代码）、Tests/
-- CLI 入口 → Spectre 命令解析 → 功能模块 → Unity 交互层
+- CLI 入口（Program.cs）→ Spectre 命令解析 → Service 层 → 文件系统/Unity.exe
+- Commands 层：参数解析 + 输出格式化（文本/JSON）
+- Services 层：核心业务逻辑，可独立测试
 - 开发测试在 Development/ Unity 工程中进行
 - 详细架构见 `docs/architecture.md`，修改代码前须先了解当前架构
 
 ## 目录结构
 
 ```
-├── package.json         # UPM 包清单
-├── Editor/              # Editor + CLI 代码
-├── Runtime/             # Runtime 代码
-├── Tests/               # 测试
-├── docs/                # 文档
-└── Development/         # 开发用 Unity 工程（不发布）
+├── src/                  # CLI 源码（.NET 项目）
+│   ├── Joker.UnityCli/   # 主程序（Commands, Services, Models）
+│   └── Tests/            # 单元测试
+├── package.json          # UPM 包清单
+├── Editor/               # Unity Editor 集成
+├── Runtime/              # Runtime 代码
+├── Tests/                # Unity 测试
+├── Tools~/               # 预编译 CLI 二进制（构建产物）
+├── docs/                 # 文档
+└── Development/          # 开发用 Unity 工程（不发布）
 ```
 
 ## 构建与测试
 
-- 在 Development/ Unity 工程中测试 Editor 功能
-- 单元测试：在 Unity Test Runner 或 `dotnet test` 中运行
-- （待脚手架搭建后补充具体命令）
+```bash
+# 运行单元测试
+cd src && dotnet test
+
+# 运行 CLI（开发模式）
+cd src/Joker.UnityCli && dotnet run -- info --project ../../Development
+
+# 编译发布
+cd src/Joker.UnityCli && dotnet publish -c Release -o ../../Tools~/win-x64
+```
