@@ -146,6 +146,77 @@ joker-unity build Win64 --project /path/to/project --output /path/to/build
 }
 ```
 
+### `joker-unity exec`
+
+在 Unity Editor 中执行 C# 代码。
+
+```
+joker-unity exec <CODE> [选项]
+joker-unity exec --file <PATH> [选项]
+```
+
+**前提条件：** Unity Editor 必须打开目标项目（CLI 自动通过 TCP 连接到 Editor 内置的脚本服务器）。
+
+**参数：**
+
+| 参数 | 说明 |
+|------|------|
+| `<CODE>` | 内联 C# 代码（与 `--file` 二选一） |
+
+**选项：**
+
+| 选项 | 说明 |
+|------|------|
+| `-f, --file <PATH>` | 从文件读取完整 C# 代码 |
+| `-p, --project <PATH>` | Unity 项目路径 |
+| `-t, --timeout <MS>` | 执行超时（默认 30000ms） |
+| `--json` | 以 JSON 格式输出 |
+
+**执行模式：**
+- 内联代码（`<CODE>`）：使用 Roslyn Scripting 快速执行语句级代码
+- 文件代码（`--file`）：使用 Roslyn Compilation 编译完整 .cs 文件，需包含 `public static void Execute()` 入口方法
+
+**示例：**
+
+```bash
+# 简单表达式
+joker-unity exec "1+1" --project /path/to/project --json
+
+# 调用 Unity API
+joker-unity exec "UnityEngine.Application.unityVersion" --project /path/to/project --json
+
+# 从文件执行
+joker-unity exec --file /path/to/script.cs --project /path/to/project
+```
+
+**JSON 输出示例（`--json`）：**
+
+```json
+{
+  "type": "exec_result",
+  "id": "a1b2c3d4",
+  "success": true,
+  "result": "2",
+  "output": null,
+  "error": null,
+  "durationMs": 42
+}
+```
+
+**错误输出示例：**
+
+```json
+{
+  "type": "exec_result",
+  "id": "e5f6g7h8",
+  "success": false,
+  "result": null,
+  "output": null,
+  "error": "(1,20): error CS0103: The name 'foo' does not exist in the current context",
+  "durationMs": 0
+}
+```
+
 ## 退出码
 
 | 退出码 | 说明 |

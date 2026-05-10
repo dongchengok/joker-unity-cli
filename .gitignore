@@ -43,6 +43,9 @@ src/*/bin/
 src/*/obj/
 *.user
 
+# Joker Unity runtime
+.joker-unity/
+
 # OS / Editor
 .DS_Store
 Thumbs.db
