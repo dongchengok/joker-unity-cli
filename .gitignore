@@ -38,6 +38,11 @@ Development/mono_crash.*
 crashlytics-build.properties
 sysinfo.txt
 
+# .NET / CLI (src/)
+src/*/bin/
+src/*/obj/
+*.user
+
 # OS / Editor
 .DS_Store
 Thumbs.db
