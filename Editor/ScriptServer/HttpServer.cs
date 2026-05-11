@@ -52,6 +52,9 @@ namespace Joker.UnityCli.Editor.ScriptServer
 
         public static void Stop()
         {
+            if (_listener != null)
+                Debug.Log("[JokerUnity] HTTP server stopping");
+
             _cts?.Cancel();
             if (_listener != null)
             {
