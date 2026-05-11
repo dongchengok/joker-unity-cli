@@ -1,5 +1,5 @@
 using UnityEditor;
-using ScriptServerClass = Joker.UnityCli.Editor.ScriptServer.ScriptServer;
+using HttpServerClass = Joker.UnityCli.Editor.ScriptServer.HttpServer;
 
 namespace Joker.UnityCli.Editor
 {
@@ -8,9 +8,9 @@ namespace Joker.UnityCli.Editor
     {
         static ScriptServerBootstrap()
         {
-            ScriptServerClass.Start();
-            AssemblyReloadEvents.beforeAssemblyReload += () => ScriptServerClass.Stop();
-            EditorApplication.quitting += () => ScriptServerClass.Stop();
+            HttpServerClass.Start();
+            AssemblyReloadEvents.beforeAssemblyReload += () => HttpServerClass.Stop();
+            EditorApplication.quitting += () => HttpServerClass.Stop();
         }
     }
 }
