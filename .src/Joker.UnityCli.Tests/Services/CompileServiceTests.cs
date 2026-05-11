@@ -202,6 +202,93 @@ public class CompileServiceTests : IDisposable
         result.Errors.Should().ContainMatch("*Unity*not found*");
     }
 
+    // === TCP path - robustness tests ===
+
+    [Fact]
+    public async Task CompileAsync_TcpPath_PortChange_ReturnsCompiled()
+    {
+        // Setup: project with initial server.json at port 12345
+        var initialPort = 12345;
+        var newPort = 54321;
+        var projectDir = CreateProjectWithServer(initialPort);
+        var serverJsonPath = Path.Combine(projectDir, ".joker-unity", "server.json");
+
+        var execService = Substitute.For<IExecService>();
+        execService.ExecuteAsync(projectDir, Arg.Any<string>(), "script", Arg.Any<int>(), Arg.Any<CancellationToken>())
+            .Returns(callInfo =>
+            {
+                // Simulate port change after trigger: update server.json in background
+                Task.Run(async () =>
+                {
+                    await Task.Delay(500);
+                    File.WriteAllText(serverJsonPath,
+                        JsonSerializer.Serialize(new { port = newPort, pid = 9999 }));
+                });
+                return new ExecResult { Success = true, Result = "triggered" };
+            });
+
+        var unityLocator = Substitute.For<IUnityLocator>();
+        var service = new CompileService(execService, unityLocator);
+
+        var result = await service.CompileAsync(projectDir, 10000, CancellationToken.None);
+
+        result.Success.Should().BeTrue();
+        result.Status.Should().Be("compiled");
+    }
+
+    [Fact]
+    public async Task CompileAsync_TcpTriggerFails_FallsBackToBatchmode()
+    {
+        // Setup: project with server.json but ExecService throws
+        var projectDir = CreateProjectWithServer(12345);
+
+        var execService = Substitute.For<IExecService>();
+        execService.ExecuteAsync(projectDir, Arg.Any<string>(), "script", Arg.Any<int>(), Arg.Any<CancellationToken>())
+            .Returns<ExecResult>(_ => throw new Exception("TCP connection refused"));
+
+        // No Unity installation available, so batchmode also fails
+        var unityLocator = Substitute.For<IUnityLocator>();
+        unityLocator.Locate(Arg.Any<string?>()).Returns((UnityInstallation?)null);
+
+        var service = new CompileService(execService, unityLocator);
+
+        var result = await service.CompileAsync(projectDir, 5000, CancellationToken.None);
+
+        // TCP path fails (exception), falls back to batchmode, which also fails (no Unity)
+        result.Success.Should().BeFalse();
+        result.Status.Should().Be("failed");
+        result.Errors.Should().ContainMatch("*Unity*not found*");
+    }
+
+    [Fact]
+    public async Task CompileAsync_PortFileMissing_FallsBackToBatchmode()
+    {
+        // Setup: project WITHOUT server.json
+        var projectDir = Path.Combine(_tempDir, $"noServer_{Guid.NewGuid():N}");
+        Directory.CreateDirectory(projectDir);
+
+        var execService = Substitute.For<IExecService>();
+        // ExecService should never be called since TryReadServerPort returns null first
+
+        // No Unity installation available, so batchmode also fails
+        var unityLocator = Substitute.For<IUnityLocator>();
+        unityLocator.Locate(Arg.Any<string?>()).Returns((UnityInstallation?)null);
+
+        var service = new CompileService(execService, unityLocator);
+
+        var result = await service.CompileAsync(projectDir, 5000, CancellationToken.None);
+
+        // No server.json → TryReadServerPort returns null → skip TCP → batchmode → no Unity → fail
+        result.Success.Should().BeFalse();
+        result.Status.Should().Be("failed");
+        result.Errors.Should().ContainMatch("*Unity*not found*");
+
+        // Verify ExecService was never called (TCP path was skipped entirely)
+        await execService.DidNotReceive().ExecuteAsync(
+            Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>(),
+            Arg.Any<int>(), Arg.Any<CancellationToken>());
+    }
+
     private string CreateProjectWithServer(int port, int pid = 9999)
     {
         var projectDir = Path.Combine(_tempDir, $"project_{Guid.NewGuid():N}");

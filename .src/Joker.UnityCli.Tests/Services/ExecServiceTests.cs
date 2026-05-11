@@ -1,3 +1,4 @@
+using System.IO;
 using System.Net;
 using System.Text.Json;
 using FluentAssertions;
@@ -194,6 +195,189 @@ public class ExecServiceTests
 
         listener.Stop();
         Directory.Delete(tempDir, true);
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_RetriesConnection_WhenServerBrieflyUnavailable()
+    {
+        var port = FindAvailablePort();
+        var tempDir = Path.Combine(Path.GetTempPath(), "joker-test-" + Guid.NewGuid());
+        Directory.CreateDirectory(tempDir);
+        var jokerDir = Path.Combine(tempDir, ".joker-unity");
+        Directory.CreateDirectory(jokerDir);
+        await File.WriteAllTextAsync(Path.Combine(jokerDir, "server.json"),
+            JsonSerializer.Serialize(new { port, pid = Environment.ProcessId }));
+
+        var listener = new HttpListener();
+        listener.Prefixes.Add($"http://127.0.0.1:{port}/");
+
+        // Start the server AFTER a brief delay so first connection attempt fails
+        _ = Task.Run(async () =>
+        {
+            await Task.Delay(1500);
+            listener.Start();
+
+            var context = await listener.GetContextAsync();
+            context.Response.StatusCode = 200;
+            context.Response.ContentType = "application/json";
+            var responseJson = JsonSerializer.Serialize(new ExecResult
+            {
+                Type = "exec_result", Id = "test", Success = true,
+                Result = "recovered", DurationMs = 5
+            }, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            var buffer = System.Text.Encoding.UTF8.GetBytes(responseJson);
+            await context.Response.OutputStream.WriteAsync(buffer);
+            context.Response.Close();
+        });
+
+        try
+        {
+            var service = new ExecService();
+            var result = await service.ExecuteAsync(tempDir, "code", "script", 10000, CancellationToken.None);
+
+            result.Success.Should().BeTrue();
+            result.Result.Should().Be("recovered");
+        }
+        finally
+        {
+            try { listener.Stop(); } catch { }
+            try { Directory.Delete(tempDir, true); } catch { }
+        }
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_Http500_ThrowsHttpRequestException()
+    {
+        var port = FindAvailablePort();
+        var listener = new HttpListener();
+        listener.Prefixes.Add($"http://127.0.0.1:{port}/");
+        listener.Start();
+
+        var tempDir = Path.Combine(Path.GetTempPath(), "joker-test-" + Guid.NewGuid());
+        Directory.CreateDirectory(tempDir);
+        var jokerDir = Path.Combine(tempDir, ".joker-unity");
+        Directory.CreateDirectory(jokerDir);
+        await File.WriteAllTextAsync(Path.Combine(jokerDir, "server.json"),
+            JsonSerializer.Serialize(new { port, pid = Environment.ProcessId }));
+
+        // Server returns 500 on every request - retries will exhaust the timeout
+        _ = Task.Run(async () =>
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                try
+                {
+                    var context = await listener.GetContextAsync();
+                    context.Response.StatusCode = 500;
+                    context.Response.Close();
+                }
+                catch { break; }
+            }
+        });
+
+        try
+        {
+            var service = new ExecService();
+            var act = async () => await service.ExecuteAsync(tempDir, "code", "script", 3000, CancellationToken.None);
+            await act.Should().ThrowAsync<HttpRequestException>();
+        }
+        finally
+        {
+            try { listener.Stop(); } catch { }
+            try { Directory.Delete(tempDir, true); } catch { }
+        }
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_ServerSlowResponse_ThrowsOperationCanceledException()
+    {
+        var port = FindAvailablePort();
+        var listener = new HttpListener();
+        listener.Prefixes.Add($"http://127.0.0.1:{port}/");
+        listener.Start();
+
+        var tempDir = Path.Combine(Path.GetTempPath(), "joker-test-" + Guid.NewGuid());
+        Directory.CreateDirectory(tempDir);
+        var jokerDir = Path.Combine(tempDir, ".joker-unity");
+        Directory.CreateDirectory(jokerDir);
+        await File.WriteAllTextAsync(Path.Combine(jokerDir, "server.json"),
+            JsonSerializer.Serialize(new { port, pid = Environment.ProcessId }));
+
+        // Server accepts request but delays response beyond client timeout
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                var context = await listener.GetContextAsync();
+                await Task.Delay(10000); // 10s delay, much longer than 3s timeout
+                context.Response.StatusCode = 200;
+                context.Response.ContentType = "application/json";
+                var responseJson = JsonSerializer.Serialize(new ExecResult
+                {
+                    Type = "exec_result", Id = "test", Success = true, DurationMs = 10000
+                }, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                var buffer = System.Text.Encoding.UTF8.GetBytes(responseJson);
+                await context.Response.OutputStream.WriteAsync(buffer);
+                context.Response.Close();
+            }
+            catch { }
+        });
+
+        try
+        {
+            var service = new ExecService();
+            var act = async () => await service.ExecuteAsync(tempDir, "code", "script", 3000, CancellationToken.None);
+            await act.Should().ThrowAsync<OperationCanceledException>();
+        }
+        finally
+        {
+            try { listener.Stop(); } catch { }
+            try { Directory.Delete(tempDir, true); } catch { }
+        }
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_InvalidJsonResponse_ThrowsIOException()
+    {
+        var port = FindAvailablePort();
+        var listener = new HttpListener();
+        listener.Prefixes.Add($"http://127.0.0.1:{port}/");
+        listener.Start();
+
+        var tempDir = Path.Combine(Path.GetTempPath(), "joker-test-" + Guid.NewGuid());
+        Directory.CreateDirectory(tempDir);
+        var jokerDir = Path.Combine(tempDir, ".joker-unity");
+        Directory.CreateDirectory(jokerDir);
+        await File.WriteAllTextAsync(Path.Combine(jokerDir, "server.json"),
+            JsonSerializer.Serialize(new { port, pid = Environment.ProcessId }));
+
+        // Server returns 200 with non-JSON body
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                var context = await listener.GetContextAsync();
+                context.Response.StatusCode = 200;
+                context.Response.ContentType = "application/json";
+                var buffer = System.Text.Encoding.UTF8.GetBytes("not json at all");
+                await context.Response.OutputStream.WriteAsync(buffer);
+                context.Response.Close();
+            }
+            catch { }
+        });
+
+        try
+        {
+            var service = new ExecService();
+            var act = async () => await service.ExecuteAsync(tempDir, "code", "script", 5000, CancellationToken.None);
+            await act.Should().ThrowAsync<IOException>()
+                .WithMessage("*Failed to deserialize*");
+        }
+        finally
+        {
+            try { listener.Stop(); } catch { }
+            try { Directory.Delete(tempDir, true); } catch { }
+        }
     }
 
     private static int FindAvailablePort()

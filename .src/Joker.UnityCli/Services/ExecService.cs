@@ -40,8 +40,15 @@ public class ExecService : IExecService
                 response.EnsureSuccessStatusCode();
 
                 var responseBody = await response.Content.ReadAsStringAsync(linkedCts.Token);
-                return JsonSerializer.Deserialize<ExecResult>(responseBody, JsonOptions)
-                    ?? throw new IOException("Failed to deserialize server response");
+                try
+                {
+                    return JsonSerializer.Deserialize<ExecResult>(responseBody, JsonOptions)
+                        ?? throw new IOException("Failed to deserialize server response");
+                }
+                catch (JsonException ex)
+                {
+                    throw new IOException("Failed to deserialize server response", ex);
+                }
             }
             catch (HttpRequestException) when (DateTime.UtcNow < deadline)
             {

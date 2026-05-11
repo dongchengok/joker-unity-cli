@@ -188,6 +188,118 @@ public class ExecCommandTests
         result.Should().Be(1);
     }
 
+    [Fact]
+    public async Task ExecCommand_WhenServerNotRunning_JsonOutput_WritesErrorToStderr()
+    {
+        var projectDetector = Substitute.For<IProjectDetector>();
+        projectDetector.Detect(Arg.Any<string>()).Returns(new UnityProject
+        {
+            Name = "TestProject",
+            Path = "/path/to/project",
+            UnityVersion = "2022.3.20f1",
+            PackageDependencies = new List<string>()
+        });
+
+        var execService = Substitute.For<IExecService>();
+        execService.ExecuteAsync(
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<int>(),
+                Arg.Any<CancellationToken>())
+            .Returns<ExecResult>(_ => throw new FileNotFoundException("Server not found"));
+
+        var app = CreateExecApp(projectDetector, execService);
+
+        var originalStderr = Console.Error;
+        using var stderrWriter = new StringWriter();
+        Console.SetError(stderrWriter);
+
+        try
+        {
+            var result = await app.RunAsync(["exec", "code", "--project", "/path/to/project", "--json"]);
+
+            result.Should().Be(1);
+            var stderr = stderrWriter.ToString();
+            stderr.Should().Contain("Unity server not running");
+        }
+        finally
+        {
+            Console.SetError(originalStderr);
+        }
+    }
+
+    [Fact]
+    public async Task ExecCommand_WhenConnectionFails_JsonOutput_WritesErrorToStderr()
+    {
+        var projectDetector = Substitute.For<IProjectDetector>();
+        projectDetector.Detect(Arg.Any<string>()).Returns(new UnityProject
+        {
+            Name = "TestProject",
+            Path = "/path/to/project",
+            UnityVersion = "2022.3.20f1",
+            PackageDependencies = new List<string>()
+        });
+
+        var execService = Substitute.For<IExecService>();
+        execService.ExecuteAsync(
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<int>(),
+                Arg.Any<CancellationToken>())
+            .Returns<ExecResult>(_ => throw new HttpRequestException("Connection refused"));
+
+        var app = CreateExecApp(projectDetector, execService);
+
+        var originalStderr = Console.Error;
+        using var stderrWriter = new StringWriter();
+        Console.SetError(stderrWriter);
+
+        try
+        {
+            var result = await app.RunAsync(["exec", "code", "--project", "/path/to/project", "--json"]);
+
+            result.Should().Be(1);
+            var stderr = stderrWriter.ToString();
+            stderr.Should().Contain("Cannot connect");
+        }
+        finally
+        {
+            Console.SetError(originalStderr);
+        }
+    }
+
+    [Fact]
+    public async Task ExecCommand_WhenTimeout_TextOutput_ReturnsNonZero()
+    {
+        var projectDetector = Substitute.For<IProjectDetector>();
+        projectDetector.Detect(Arg.Any<string>()).Returns(new UnityProject
+        {
+            Name = "TestProject",
+            Path = "/path/to/project",
+            UnityVersion = "2022.3.20f1",
+            PackageDependencies = new List<string>()
+        });
+
+        var execService = Substitute.For<IExecService>();
+        execService.ExecuteAsync(
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<int>(),
+                Arg.Any<CancellationToken>())
+            .Returns<ExecResult>(_ => throw new OperationCanceledException("Timeout"));
+
+        var app = CreateExecApp(projectDetector, execService);
+
+        // ExecCommand does not catch OperationCanceledException, so it propagates.
+        // Spectre.Console.Cli wraps the exception and returns non-zero exit code.
+        var result = await app.RunAsync(["exec", "while(true){}", "--project", "/path/to/project"]);
+
+        result.Should().NotBe(0);
+    }
+
     private static CommandApp CreateExecApp(IProjectDetector projectDetector, IExecService execService)
     {
         var services = new ServiceCollection();
