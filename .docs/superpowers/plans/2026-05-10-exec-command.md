@@ -1053,7 +1053,7 @@ cd src/Joker.UnityCli && dotnet publish -c Release -o ../../Tools~/win-x64
 
 ```bash
 CLI="Tools~/win-x64/joker-unity.exe"
-PROJECT="Development"
+PROJECT=".Unity2019"
 
 # 验证服务启动
 cat $PROJECT/.joker-unity/server.json

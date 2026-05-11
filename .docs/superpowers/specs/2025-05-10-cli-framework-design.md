@@ -46,7 +46,8 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具，
 ├── Tests/
 ├── Tools~/                          # 预编译 CLI 二进制（构建产物）
 ├── docs/
-└── Development/                     # 开发用 Unity 工程
+├── .Unity2019/                     # 测试用 Unity 2019.4 工程（最低兼容版本）
+├── .Unity2021/                     # 测试用 Unity 2021.3 工程
 ```
 
 ## 架构

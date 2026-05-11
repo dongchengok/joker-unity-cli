@@ -108,51 +108,53 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                     references,
                     new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
-                using var ms = new MemoryStream();
-                var emitResult = compilation.Emit(ms);
-                if (!emitResult.Success)
+                using (var ms = new MemoryStream())
                 {
+                    var emitResult = compilation.Emit(ms);
+                    if (!emitResult.Success)
+                    {
+                        sw.Stop();
+                        var errors = string.Join("\n", emitResult.Diagnostics
+                            .Where(d => d.Severity == DiagnosticSeverity.Error)
+                            .Select(d => d.ToString()));
+                        return new ExecResult
+                        {
+                            Type = "exec_result",
+                            Success = false,
+                            Error = errors,
+                            DurationMs = sw.ElapsedMilliseconds
+                        };
+                    }
+
+                    ms.Seek(0, SeekOrigin.Begin);
+                    var assembly = Assembly.Load(ms.ToArray());
+
+                    var executeMethod = assembly.GetTypes()
+                        .SelectMany(t => t.GetMethods(BindingFlags.Public | BindingFlags.Static))
+                        .FirstOrDefault(m => m.Name == "Execute" && m.GetParameters().Length == 0);
+
+                    if (executeMethod == null)
+                    {
+                        sw.Stop();
+                        return new ExecResult
+                        {
+                            Type = "exec_result",
+                            Success = false,
+                            Error = "No 'public static void Execute()' method found.",
+                            DurationMs = sw.ElapsedMilliseconds
+                        };
+                    }
+
+                    var execResult = executeMethod.Invoke(null, null);
                     sw.Stop();
-                    var errors = string.Join("\n", emitResult.Diagnostics
-                        .Where(d => d.Severity == DiagnosticSeverity.Error)
-                        .Select(d => d.ToString()));
                     return new ExecResult
                     {
                         Type = "exec_result",
-                        Success = false,
-                        Error = errors,
+                        Success = true,
+                        Result = execResult?.ToString() ?? "null",
                         DurationMs = sw.ElapsedMilliseconds
                     };
                 }
-
-                ms.Seek(0, SeekOrigin.Begin);
-                var assembly = Assembly.Load(ms.ToArray());
-
-                var executeMethod = assembly.GetTypes()
-                    .SelectMany(t => t.GetMethods(BindingFlags.Public | BindingFlags.Static))
-                    .FirstOrDefault(m => m.Name == "Execute" && m.GetParameters().Length == 0);
-
-                if (executeMethod == null)
-                {
-                    sw.Stop();
-                    return new ExecResult
-                    {
-                        Type = "exec_result",
-                        Success = false,
-                        Error = "No 'public static void Execute()' method found.",
-                        DurationMs = sw.ElapsedMilliseconds
-                    };
-                }
-
-                var execResult = executeMethod.Invoke(null, null);
-                sw.Stop();
-                return new ExecResult
-                {
-                    Type = "exec_result",
-                    Success = true,
-                    Result = execResult?.ToString() ?? "null",
-                    DurationMs = sw.ElapsedMilliseconds
-                };
             }
             catch (OperationCanceledException)
             {

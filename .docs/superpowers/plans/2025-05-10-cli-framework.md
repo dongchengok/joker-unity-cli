@@ -1496,7 +1496,7 @@ dotnet test -v n
 # 2. CLI 可执行
 cd Joker.UnityCli
 dotnet run -- --help
-dotnet run -- info --project ../../Development
+dotnet run -- info --project ../../.Unity2019
 
 # 3. 代码无警告
 dotnet build -warnaserror

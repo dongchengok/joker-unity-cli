@@ -49,7 +49,7 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具（
 - Services 层：核心业务逻辑，可独立测试
 - Unity Editor 侧：TCP 服务器（`[InitializeOnLoad]` 自启动）+ Roslyn 脚本执行
 - exec 命令通过 TCP 连接 Unity Editor 内置服务器，支持 script（语句级）和 compile（完整文件）两种模式
-- 开发测试在 `.development/` Unity 工程中进行
+- 开发测试在 `.Unity2019/`（2019.4）和 `.Unity2021/`（2021.3）两个 Unity 工程中进行
 - 详细架构见 `.docs/architecture.md`，修改代码前须先了解当前架构
 
 ## 目录结构
@@ -59,7 +59,8 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具（
 │   ├── Joker.UnityCli/   # 主程序（Commands, Services, Models）
 │   └── Tests/            # 单元测试
 ├── .docs/                 # 项目文档
-├── .development/          # 开发用 Unity 工程（不发布）
+├── .Unity2019/            # 测试用 Unity 2019.4 工程（最低兼容版本）
+├── .Unity2021/            # 测试用 Unity 2021.3 工程
 ├── package.json           # UPM 包清单
 ├── Editor/                # Unity Editor 集成
 │   ├── Models/            # ExecRequest, ExecResult
@@ -81,11 +82,11 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具（
 cd .src && dotnet test
 
 # 运行 CLI（开发模式）
-cd .src/Joker.UnityCli && dotnet run -- info --project ../../.development
+cd .src/Joker.UnityCli && dotnet run -- info --project ../../.Unity2019
 
 # 编译发布
 cd .src/Joker.UnityCli && dotnet publish -c Release -o ../../Tools~/win-x64
 
 # 执行代码（需 Unity Editor 打开项目）
-Tools~/win-x64/joker-unity exec "1+1" --project ../../.development --json
+Tools~/win-x64/joker-unity exec "1+1" --project ../../.Unity2019 --json
 ```
