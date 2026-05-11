@@ -1,5 +1,4 @@
 using System.Net;
-using System.Net.Sockets;
 using System.Text.Json;
 using FluentAssertions;
 using Joker.UnityCli.Models;
@@ -107,11 +106,12 @@ public class ExecServiceTests
     }
 
     [Fact]
-    public async Task ExecuteAsync_WithMockServer_ReturnsResult()
+    public async Task ExecuteAsync_WithMockHttpServer_ReturnsResult()
     {
-        var listener = new TcpListener(IPAddress.Loopback, 0);
+        var port = FindAvailablePort();
+        var listener = new HttpListener();
+        listener.Prefixes.Add($"http://127.0.0.1:{port}/");
         listener.Start();
-        var port = ((IPEndPoint)listener.LocalEndpoint).Port;
 
         var tempDir = Path.Combine(Path.GetTempPath(), "joker-test-" + Guid.NewGuid());
         Directory.CreateDirectory(tempDir);
@@ -122,17 +122,17 @@ public class ExecServiceTests
 
         var serverTask = Task.Run(async () =>
         {
-            var client = await listener.AcceptTcpClientAsync();
-            using var reader = new StreamReader(client.GetStream());
-            using var writer = new StreamWriter(client.GetStream()) { AutoFlush = true };
-            var line = await reader.ReadLineAsync();
-            var response = JsonSerializer.Serialize(new ExecResult
+            var context = await listener.GetContextAsync();
+            context.Response.StatusCode = 200;
+            context.Response.ContentType = "application/json";
+            var responseJson = JsonSerializer.Serialize(new ExecResult
             {
                 Type = "exec_result", Id = "test", Success = true,
                 Result = "42", DurationMs = 5
             }, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-            await writer.WriteLineAsync(response);
-            client.Close();
+            var buffer = System.Text.Encoding.UTF8.GetBytes(responseJson);
+            await context.Response.OutputStream.WriteAsync(buffer);
+            context.Response.Close();
         });
 
         var service = new ExecService();
@@ -155,9 +155,10 @@ public class ExecServiceTests
     [Fact]
     public async Task ExecuteAsync_SendsCorrectMode()
     {
-        var listener = new TcpListener(IPAddress.Loopback, 0);
+        var port = FindAvailablePort();
+        var listener = new HttpListener();
+        listener.Prefixes.Add($"http://127.0.0.1:{port}/");
         listener.Start();
-        var port = ((IPEndPoint)listener.LocalEndpoint).Port;
 
         var tempDir = Path.Combine(Path.GetTempPath(), "joker-test-" + Guid.NewGuid());
         Directory.CreateDirectory(tempDir);
@@ -166,29 +167,51 @@ public class ExecServiceTests
         await File.WriteAllTextAsync(Path.Combine(jokerDir, "server.json"),
             JsonSerializer.Serialize(new { port, pid = Environment.ProcessId }));
 
-        string? receivedLine = null;
+        string? receivedBody = null;
         var serverTask = Task.Run(async () =>
         {
-            var client = await listener.AcceptTcpClientAsync();
-            using var reader = new StreamReader(client.GetStream());
-            using var writer = new StreamWriter(client.GetStream()) { AutoFlush = true };
-            receivedLine = await reader.ReadLineAsync();
-            var response = JsonSerializer.Serialize(new ExecResult
+            var context = await listener.GetContextAsync();
+            using var reader = new StreamReader(context.Request.InputStream);
+            receivedBody = await reader.ReadToEndAsync();
+
+            context.Response.StatusCode = 200;
+            context.Response.ContentType = "application/json";
+            var responseJson = JsonSerializer.Serialize(new ExecResult
             {
                 Type = "exec_result", Id = "test", Success = true, DurationMs = 1
             }, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-            await writer.WriteLineAsync(response);
-            client.Close();
+            var buffer = System.Text.Encoding.UTF8.GetBytes(responseJson);
+            await context.Response.OutputStream.WriteAsync(buffer);
+            context.Response.Close();
         });
 
         var service = new ExecService();
         await service.ExecuteAsync(tempDir, "code", "compile", 5000, CancellationToken.None);
 
-        receivedLine.Should().NotBeNull();
-        var request = JsonSerializer.Deserialize<ExecRequest>(receivedLine!, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+        receivedBody.Should().NotBeNull();
+        var request = JsonSerializer.Deserialize<ExecRequest>(receivedBody!, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
         request!.Mode.Should().Be("compile");
 
         listener.Stop();
         Directory.Delete(tempDir, true);
+    }
+
+    private static int FindAvailablePort()
+    {
+        var random = new Random();
+        for (int i = 0; i < 100; i++)
+        {
+            var port = random.Next(63000, 63100);
+            try
+            {
+                var testListener = new HttpListener();
+                testListener.Prefixes.Add($"http://127.0.0.1:{port}/");
+                testListener.Start();
+                testListener.Stop();
+                return port;
+            }
+            catch (HttpListenerException) { }
+        }
+        throw new InvalidOperationException("No available port found for test");
     }
 }
