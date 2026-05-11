@@ -2,10 +2,13 @@
   "name": "com.joker.unity-cli",
   "displayName": "Joker Unity CLI",
   "version": "0.1.0",
-  "unity": "2021.3",
+  "unity": "2019.4",
   "description": "CLI tool for AI agents to integrate with Unity development workflows.",
   "license": "MIT",
   "author": {
     "name": "dongchengok"
+  },
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "2.0.0"
   }
 }
