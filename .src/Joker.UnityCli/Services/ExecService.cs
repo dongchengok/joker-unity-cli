@@ -1,5 +1,5 @@
 using System.IO;
-using System.Net.Sockets;
+using System.Net.Http;
 using System.Text.Json;
 using Joker.UnityCli.Models;
 
@@ -7,6 +7,8 @@ namespace Joker.UnityCli.Services;
 
 public class ExecService : IExecService
 {
+    private static readonly HttpClient SharedClient = new();
+
     public async Task<ExecResult> ExecuteAsync(string projectPath, string code, string mode, int timeoutMs, CancellationToken ct)
     {
         var port = ReadServerPort(projectPath);
@@ -18,22 +20,36 @@ public class ExecService : IExecService
             Timeout = timeoutMs
         };
 
-        using var client = new TcpClient();
-        await client.ConnectAsync("127.0.0.1", port, ct);
-
-        using var stream = client.GetStream();
-        using var writer = new StreamWriter(stream) { AutoFlush = true };
-        using var reader = new StreamReader(stream);
-
         var requestJson = JsonSerializer.Serialize(request, JsonOptions);
-        await writer.WriteAsync(requestJson).WaitAsync(ct);
-        await writer.WriteAsync("\n").WaitAsync(ct);
+        var content = new StringContent(requestJson, System.Text.Encoding.UTF8, "application/json");
 
-        var responseLine = await reader.ReadLineAsync(ct)
-            ?? throw new IOException("Server closed connection without response");
+        var deadline = DateTime.UtcNow + TimeSpan.FromMilliseconds(timeoutMs);
+        var retryDelay = TimeSpan.FromSeconds(1);
+        var maxRetryDelay = TimeSpan.FromSeconds(5);
 
-        return JsonSerializer.Deserialize<ExecResult>(responseLine, JsonOptions)
-            ?? throw new IOException("Failed to deserialize server response");
+        while (true)
+        {
+            ct.ThrowIfCancellationRequested();
+
+            try
+            {
+                using var cts = new CancellationTokenSource(Math.Max(5000, (int)(deadline - DateTime.UtcNow).TotalMilliseconds));
+                using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(ct, cts.Token);
+
+                var response = await SharedClient.PostAsync($"http://127.0.0.1:{port}/exec", content, linkedCts.Token);
+                response.EnsureSuccessStatusCode();
+
+                var responseBody = await response.Content.ReadAsStringAsync(linkedCts.Token);
+                return JsonSerializer.Deserialize<ExecResult>(responseBody, JsonOptions)
+                    ?? throw new IOException("Failed to deserialize server response");
+            }
+            catch (HttpRequestException) when (DateTime.UtcNow < deadline)
+            {
+                await Task.Delay(retryDelay, ct);
+                retryDelay = TimeSpan.FromTicks(Math.Min(retryDelay.Ticks * 2, maxRetryDelay.Ticks));
+                content = new StringContent(requestJson, System.Text.Encoding.UTF8, "application/json");
+            }
+        }
     }
 
     public static int ReadServerPort(string projectPath)

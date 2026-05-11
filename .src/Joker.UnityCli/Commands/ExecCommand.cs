@@ -1,5 +1,5 @@
 using System.ComponentModel;
-using System.Net.Sockets;
+using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Joker.UnityCli.Services;
@@ -175,7 +175,7 @@ public class ExecCommand : AsyncCommand<ExecCommand.Settings>
             AnsiConsole.MarkupLine("[red]Error:[/] Unity server not running. Start the Unity Editor with the Joker plugin.");
             return 1;
         }
-        catch (SocketException)
+        catch (HttpRequestException)
         {
             if (settings.JsonOutput)
             {
