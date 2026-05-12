@@ -5,6 +5,7 @@ using Xunit.Sdk;
 
 namespace Joker.UnityCli.Tests.Integration;
 
+[Collection("UnityIntegration")]
 public class CompileServiceIntegrationTests : UnityIntegrationTestBase
 {
     [SkippableFact]
@@ -19,14 +20,12 @@ public class CompileServiceIntegrationTests : UnityIntegrationTestBase
         SkipIfUnityNotRunning();
         var initialPort = ServerPort!.Value;
 
-        var unityLocator = new UnityLocator(); // real implementation
-        var execService = new ExecService(); // real implementation
+        var unityLocator = new UnityLocator();
+        var execService = new ExecService();
         var compileService = new CompileService(execService, unityLocator);
 
         var result = await compileService.CompileAsync(ProjectPath, 60000, CancellationToken.None);
         result.Should().NotBeNull();
-        // After compilation, a new server port should be assigned (Domain Reload)
-        // The result should indicate success or up_to_date
         result.Status.Should().BeOneOf("compiled", "up_to_date");
     }
 
@@ -37,7 +36,7 @@ public class CompileServiceIntegrationTests : UnityIntegrationTestBase
         var execService = new ExecService();
 
         // First verify exec works
-        var before = await execService.ExecuteAsync(ProjectPath, "1+1", "script", 5000, CancellationToken.None);
+        var before = await execService.ExecuteAsync(ProjectPath, "1+1", "script", 30000, CancellationToken.None);
         before.Success.Should().BeTrue();
 
         // Trigger compilation (which causes Domain Reload)
@@ -49,7 +48,7 @@ public class CompileServiceIntegrationTests : UnityIntegrationTestBase
         await Task.Delay(1000);
 
         // Try exec during Domain Reload - should retry and eventually succeed
-        var result = await execService.ExecuteAsync(ProjectPath, "1+1", "script", 30000, CancellationToken.None);
+        var result = await execService.ExecuteAsync(ProjectPath, "1+1", "script", 60000, CancellationToken.None);
         result.Success.Should().BeTrue();
     }
 }

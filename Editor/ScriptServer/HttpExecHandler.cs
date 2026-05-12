@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 using Joker.UnityCli.Editor.Models;
 using Joker.UnityCli.Editor.ScriptExecution;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using UnityEditor;
 
 namespace Joker.UnityCli.Editor.ScriptServer
 {
     public static class HttpExecHandler
     {
+        private static readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        };
         public static async Task HandleAsync(HttpListenerContext context, CancellationToken ct)
         {
             try
@@ -42,7 +47,7 @@ namespace Joker.UnityCli.Editor.ScriptServer
                 ExecRequest execRequest;
                 try
                 {
-                    execRequest = JsonConvert.DeserializeObject<ExecRequest>(requestBody);
+                    execRequest = JsonConvert.DeserializeObject<ExecRequest>(requestBody, JsonSettings);
                     if (execRequest == null || string.IsNullOrEmpty(execRequest.Code))
                     {
                         response.StatusCode = 400;
@@ -57,41 +62,49 @@ namespace Joker.UnityCli.Editor.ScriptServer
                     return;
                 }
 
-                var tcs = new TaskCompletionSource<ExecResult>();
-                var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
-                cts.CancelAfter(execRequest.Timeout);
+                var session = SessionManager.GetOrCreate(execRequest.Id);
 
-                EditorApplication.delayCall += () =>
+                if (session.TryStart())
                 {
-                    try
-                    {
-                        var task = ScriptExecutor.ExecuteAsync(execRequest, cts.Token);
-                        task.ContinueWith(t =>
-                        {
-                            if (t.Status == TaskStatus.RanToCompletion)
-                                tcs.SetResult(t.Result);
-                            else if (t.IsCanceled)
-                                tcs.SetCanceled();
-                            else
-                                tcs.SetException(t.Exception.InnerException ?? t.Exception);
-                        }, TaskScheduler.Default);
-                    }
-                    catch (Exception ex)
-                    {
-                        tcs.SetException(ex);
-                    }
-                };
+                    var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+                    cts.CancelAfter(execRequest.Timeout);
 
-                var result = await tcs.Task;
+                    EditorApplication.delayCall += () =>
+                    {
+                        try
+                        {
+                            var task = ScriptExecutor.ExecuteAsync(execRequest, cts.Token);
+                            task.ContinueWith(t =>
+                            {
+                                if (t.Status == TaskStatus.RanToCompletion)
+                                    session.CompletionSource.TrySetResult(t.Result);
+                                else if (t.IsCanceled)
+                                    session.CompletionSource.TrySetCanceled();
+                                else
+                                    session.CompletionSource.TrySetException(t.Exception.InnerException ?? t.Exception);
+                            }, TaskScheduler.Default);
+                        }
+                        catch (Exception ex)
+                        {
+                            session.CompletionSource.TrySetException(ex);
+                        }
+                    };
+                }
+
+                var result = await session.CompletionSource.Task;
                 result.Id = execRequest.Id;
 
                 response.StatusCode = 200;
                 response.ContentType = "application/json";
-                var responseJson = JsonConvert.SerializeObject(result);
+                var responseJson = JsonConvert.SerializeObject(result, JsonSettings);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(responseJson);
                 await response.OutputStream.WriteAsync(buffer, 0, buffer.Length, ct);
                 response.Close();
             }
+            catch (OperationCanceledException) { }
+            catch (IOException) { }
+            catch (HttpListenerException) { }
+            catch (ObjectDisposedException) { }
             catch (Exception ex)
             {
                 UnityEngine.Debug.LogError($"[JokerUnity] HTTP handler error: {ex.Message}");

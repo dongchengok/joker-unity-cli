@@ -11,7 +11,6 @@ public class ExecService : IExecService
 
     public async Task<ExecResult> ExecuteAsync(string projectPath, string code, string mode, int timeoutMs, CancellationToken ct)
     {
-        var port = ReadServerPort(projectPath);
         var request = new ExecRequest
         {
             Id = Guid.NewGuid().ToString("N")[..8],
@@ -26,6 +25,7 @@ public class ExecService : IExecService
         var deadline = DateTime.UtcNow + TimeSpan.FromMilliseconds(timeoutMs);
         var retryDelay = TimeSpan.FromSeconds(1);
         var maxRetryDelay = TimeSpan.FromSeconds(5);
+        int port;
 
         while (true)
         {
@@ -33,6 +33,7 @@ public class ExecService : IExecService
 
             try
             {
+                port = ReadServerPort(projectPath);
                 using var cts = new CancellationTokenSource(Math.Max(5000, (int)(deadline - DateTime.UtcNow).TotalMilliseconds));
                 using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(ct, cts.Token);
 
@@ -50,7 +51,11 @@ public class ExecService : IExecService
                     throw new IOException("Failed to deserialize server response", ex);
                 }
             }
-            catch (HttpRequestException) when (DateTime.UtcNow < deadline)
+            catch (Exception ex) when (
+                (ex is HttpRequestException
+                 || (ex is FileNotFoundException fnf && fnf.Message.Contains("Unity server not running"))
+                 || (ex is TaskCanceledException && !ct.IsCancellationRequested))
+                && DateTime.UtcNow < deadline)
             {
                 await Task.Delay(retryDelay, ct);
                 retryDelay = TimeSpan.FromTicks(Math.Min(retryDelay.Ticks * 2, maxRetryDelay.Ticks));

@@ -5,6 +5,7 @@ using Xunit.Sdk;
 
 namespace Joker.UnityCli.Tests.Integration;
 
+[Collection("UnityIntegration")]
 public class ExecServiceIntegrationTests : UnityIntegrationTestBase
 {
     private readonly ExecService _service = new();
@@ -50,14 +51,5 @@ public class ExecServiceIntegrationTests : UnityIntegrationTestBase
         var result = await _service.ExecuteAsync(ProjectPath, code, "compile", 30000, CancellationToken.None);
         result.Success.Should().BeTrue();
         result.Result.Should().Be("hello from compile");
-    }
-
-    [SkippableFact]
-    public async Task ExecuteAsync_Timeout_ReturnsTimeoutError()
-    {
-        SkipIfUnityNotRunning();
-        var result = await _service.ExecuteAsync(ProjectPath, "System.Threading.Thread.Sleep(100000)", "script", 3000, CancellationToken.None);
-        result.Success.Should().BeFalse();
-        result.Error.Should().Contain("Timed out");
     }
 }

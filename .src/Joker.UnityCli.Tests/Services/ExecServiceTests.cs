@@ -380,6 +380,65 @@ public class ExecServiceTests
         }
     }
 
+    [Fact]
+    public async Task ExecuteAsync_PortFileTemporarilyMissing_RetriesAndSucceeds()
+    {
+        var port = FindAvailablePort();
+        var tempDir = Path.Combine(Path.GetTempPath(), "joker-test-" + Guid.NewGuid());
+        Directory.CreateDirectory(tempDir);
+        var jokerDir = Path.Combine(tempDir, ".joker-unity");
+        Directory.CreateDirectory(jokerDir);
+        var serverJsonPath = Path.Combine(jokerDir, "server.json");
+
+        // Start server first
+        var listener = new HttpListener();
+        listener.Prefixes.Add($"http://127.0.0.1:{port}/");
+        listener.Start();
+
+        // Server task: handle one request and return result
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                var context = await listener.GetContextAsync();
+                context.Response.StatusCode = 200;
+                context.Response.ContentType = "application/json";
+                var responseJson = JsonSerializer.Serialize(new ExecResult
+                {
+                    Type = "exec_result", Id = "test", Success = true,
+                    Result = "recovered", DurationMs = 5
+                }, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                var buffer = System.Text.Encoding.UTF8.GetBytes(responseJson);
+                await context.Response.OutputStream.WriteAsync(buffer);
+                context.Response.Close();
+            }
+            catch { }
+        });
+
+        try
+        {
+            // First attempt: port file missing → FileNotFoundException → retry
+            // After delay, create the port file
+            _ = Task.Run(async () =>
+            {
+                await Task.Delay(1500);
+                await File.WriteAllTextAsync(serverJsonPath,
+                    JsonSerializer.Serialize(new { port, pid = Environment.ProcessId }));
+            });
+
+            var service = new ExecService();
+            var result = await service.ExecuteAsync(tempDir, "code", "script", 10000, CancellationToken.None);
+
+            result.Success.Should().BeTrue();
+            result.Result.Should().Be("recovered");
+        }
+        finally
+        {
+            try { listener.Stop(); } catch { }
+            try { Directory.Delete(tempDir, true); } catch { }
+        }
+    }
+
     private static int FindAvailablePort()
     {
         var random = new Random();

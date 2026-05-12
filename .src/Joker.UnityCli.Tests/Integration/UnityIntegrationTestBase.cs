@@ -12,7 +12,7 @@ public abstract class UnityIntegrationTestBase : IDisposable
     protected UnityIntegrationTestBase()
     {
         ProjectPath = Path.GetFullPath(
-            Path.Combine("..", "..", "..", "..", ".Unity2019"));
+            Path.Combine("..", "..", "..", "..", "..", ".Unity2019"));
         ServerPort = TryReadServerPort(ProjectPath);
     }
 
