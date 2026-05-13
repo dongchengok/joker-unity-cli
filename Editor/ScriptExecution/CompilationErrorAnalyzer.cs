@@ -18,13 +18,13 @@ namespace Joker.UnityCli.Editor.ScriptExecution
     {
         public string ErrorCode { get; set; } = "";
         public bool CanAutoFix => FixAction != FixAction.CannotFix;
-        public FixAction FixAction { get; init; } = FixAction.CannotFix;
-        public string Detail { get; init; } = "";
+        public FixAction FixAction { get; set; } = FixAction.CannotFix;
+        public string Detail { get; set; } = "";
     }
 
     public static class CompilationErrorAnalyzer
     {
-        private static readonly Dictionary<string, string> NamespaceToAssemblyMap = new()
+        private static readonly Dictionary<string, string> NamespaceToAssemblyMap = new Dictionary<string, string>()
         {
             { "System.IO", "mscorlib" },
             { "System.Text", "mscorlib" },
@@ -157,14 +157,14 @@ namespace Joker.UnityCli.Editor.ScriptExecution
             return results.AsReadOnly();
         }
 
-        private static string? ExtractAssemblyFromCS0012(string message)
+        private static string ExtractAssemblyFromCS0012(string message)
         {
             var match = System.Text.RegularExpressions.Regex.Match(
                 message, @"assembly\s+'([^']+)'");
             return match.Success ? match.Groups[1].Value.Split(',')[0].Trim() : null;
         }
 
-        private static string? ExtractTypeNameFromMessage(string message)
+        private static string ExtractTypeNameFromMessage(string message)
         {
             // CS0246: "The type or namespace name 'X' could not be found"
             // CS0103: "The name 'X' does not exist in the current context"
@@ -173,7 +173,7 @@ namespace Joker.UnityCli.Editor.ScriptExecution
             return match.Success ? match.Groups[1].Value : null;
         }
 
-        private static string? ExtractNamespaceFromCS0234(string message)
+        private static string ExtractNamespaceFromCS0234(string message)
         {
             // "The type or namespace name 'X' does not exist in the namespace 'Y'"
             var match = System.Text.RegularExpressions.Regex.Match(
@@ -181,7 +181,7 @@ namespace Joker.UnityCli.Editor.ScriptExecution
             return match.Success ? match.Groups[1].Value : null;
         }
 
-        private static string? ExtractConflictingAssembly(string message)
+        private static string ExtractConflictingAssembly(string message)
         {
             // "The type 'X' exists in both 'UnityEngine.CoreModule, ...' and 'UnityEngine, ...'"
             var matches = System.Text.RegularExpressions.Regex.Matches(
@@ -198,7 +198,7 @@ namespace Joker.UnityCli.Editor.ScriptExecution
             return null;
         }
 
-        private static ErrorAnalysis? ResolveTypeLocation(string typeName)
+        private static ErrorAnalysis ResolveTypeLocation(string typeName)
         {
             // Step 1: 通过映射表的命名空间推测，检查类型是否存在
             foreach (var kvp in NamespaceToAssemblyMap)
@@ -247,7 +247,7 @@ namespace Joker.UnityCli.Editor.ScriptExecution
             return null;
         }
 
-        private static string? ResolveNamespace(string namespaceName)
+        private static string ResolveNamespace(string namespaceName)
         {
             // 先查映射表
             if (NamespaceToAssemblyMap.TryGetValue(namespaceName, out var asmName))
