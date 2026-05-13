@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Compile Include="..\..\Editor\ScriptExecution\CompilationErrorAnalyzer.cs" Link="Editor\ScriptExecution\CompilationErrorAnalyzer.cs" />
+    <Compile Include="..\..\Editor\ScriptExecution\UsingParser.cs" Link="Editor\ScriptExecution\UsingParser.cs" />
   </ItemGroup>
 
 </Project>
