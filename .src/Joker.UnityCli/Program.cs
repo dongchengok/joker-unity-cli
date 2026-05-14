@@ -16,6 +16,7 @@ class Program
         services.AddSingleton<IBuildService, BuildService>();
         services.AddSingleton<IExecService, ExecService>();
         services.AddSingleton<ICompileService, CompileService>();
+        services.AddSingleton<IStatusService, StatusService>();
         services.AddSingleton<ILogService, LogService>();
 
         var registrar = new DependencyInjectionTypeRegistrar(services);
@@ -34,6 +35,8 @@ class Program
                 .WithDescription("Execute C# code in Unity Editor");
             config.AddCommand<CompileCommand>("compile")
                 .WithDescription("Force Unity script recompilation and report results");
+            config.AddCommand<StatusCommand>("status")
+                .WithDescription("Check Unity Editor server status");
             config.AddCommand<LogsCommand>("logs")
                 .WithDescription("Show Unity Editor log entries");
         });

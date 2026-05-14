@@ -1,0 +1,795 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="e16cbbb5-f8cb-41fa-9a54-09ad41bc7a18" name="JYHD@DESKTOP-8UFRM9R 2026-05-13 12:48:51" runUser="DESKTOP-8UFRM9R\JYHD" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-05-13T12:48:51.4167126+08:00" queuing="2026-05-13T12:48:51.4167128+08:00" start="2026-05-13T12:48:51.0952380+08:00" finish="2026-05-13T12:48:51.4324983+08:00" />
+  <TestSettings name="default" id="de81ac96-0d3a-43c5-b911-3ff9fa19e947">
+    <Deployment runDeploymentRoot="JYHD_DESKTOP-8UFRM9R_2026-05-13_12_48_51" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="7d64b982-9cfb-4136-ad80-35dea031a7ec" testId="1bb5fe58-5b99-9126-2295-45a5ab23c704" testName="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_AddComponent_BoxCollider_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4050591+08:00" endTime="2026-05-13T12:48:51.4050591+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7d64b982-9cfb-4136-ad80-35dea031a7ec">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="643477a3-1030-4c7a-b176-92e0018b69a2" testId="122af397-878d-301c-795b-3bee62318895" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_ExecuteNotStatic_ReturnsError" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4036067+08:00" endTime="2026-05-13T12:48:51.4036067+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="643477a3-1030-4c7a-b176-92e0018b69a2">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9d42f3d2-e80d-492d-a82b-b74614cf6a15" testId="dad2b07a-f20c-ff7b-6b93-37b24e8b0eeb" testName="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_TriggersCompilation_PortChanges" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.3855693+08:00" endTime="2026-05-13T12:48:51.3855694+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9d42f3d2-e80d-492d-a82b-b74614cf6a15">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="591e6fcb-c896-4471-aa22-20c284e32423" testId="52c20f91-31b1-04a7-3ab9-f6b8355da538" testName="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_MultipleErrors_AllReported" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4031135+08:00" endTime="2026-05-13T12:48:51.4031136+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="591e6fcb-c896-4471-aa22-20c284e32423">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7802f2f1-0936-4190-8fdf-a108da96d964" testId="9822eb12-3a5d-ba86-0098-33fd4d4bca62" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_CompileMode_ExecutesMethod" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4044799+08:00" endTime="2026-05-13T12:48:51.4044800+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7802f2f1-0936-4190-8fdf-a108da96d964">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="85b27a30-f407-442d-b3f7-200c30069af6" testId="4ec23efc-d57c-5a63-3cf0-0dd8a9374e21" testName="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CompileMode_ExplicitUsing_Preloaded" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4055268+08:00" endTime="2026-05-13T12:48:51.4055269+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="85b27a30-f407-442d-b3f7-200c30069af6">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="6e7a426b-23b9-4569-9d5d-d4b4d1aaf581" testId="4ce6a00d-65a1-ce3e-5844-1f14da846f87" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_UnityEngineType_ReturnsExpectedValue" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4044395+08:00" endTime="2026-05-13T12:48:51.4044395+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6e7a426b-23b9-4569-9d5d-d4b4d1aaf581">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3fb38eaf-a3d1-490b-a65f-86a7e711ea6d" testId="723da426-6192-e70f-99ff-83f475952248" testName="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_ModifyTransform_RotationScale_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4048514+08:00" endTime="2026-05-13T12:48:51.4048515+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3fb38eaf-a3d1-490b-a65f-86a7e711ea6d">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f7b67cb0-587d-45fa-9755-8439ba78ebe2" testId="3b4c0e3d-1ad5-0ea9-364a-fe4e8bcc8659" testName="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_ThreeRetriesExhausted_ReturnsError" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4053620+08:00" endTime="2026-05-13T12:48:51.4053620+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f7b67cb0-587d-45fa-9755-8439ba78ebe2">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="dd0b8c61-918d-4fd8-88af-668b4d6f9d36" testId="5654694d-e575-0b10-05da-cff5fb1f6057" testName="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_StaticClass_ExecutesCorrectly" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.3861110+08:00" endTime="2026-05-13T12:48:51.3861111+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dd0b8c61-918d-4fd8-88af-668b4d6f9d36">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="34bc9415-16ee-4285-af80-c0cb82f1fa84" testId="27c256a5-6fdc-38eb-4fc5-6dc1e7036669" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_CompileMode_MultipleExecuteMethods_UsesFirst" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4033447+08:00" endTime="2026-05-13T12:48:51.4033448+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="34bc9415-16ee-4285-af80-c0cb82f1fa84">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="cbfe41c9-2c65-4a65-8100-ce1bf85d1feb" testId="428b0254-9406-c06f-d086-a4a6c844f596" testName="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_ValidClass_ExecutesAndReturnsResult" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.3868954+08:00" endTime="2026-05-13T12:48:51.3868954+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cbfe41c9-2c65-4a65-8100-ce1bf85d1feb">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0a3fa13d-b894-48c9-884d-4c4e34149e98" testId="80501608-3296-e985-2b89-acad2d112cf2" testName="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_EvalMode_CompilationErrorException_Analyzed" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4054627+08:00" endTime="2026-05-13T12:48:51.4054627+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0a3fa13d-b894-48c9-884d-4c4e34149e98">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="8bb122aa-2ce7-4a84-ab92-cbf4956e1cb6" testId="659d8eef-7e4d-1590-3e3a-733eb62a78e1" testName="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_DestroyGameObject_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4046295+08:00" endTime="2026-05-13T12:48:51.4046296+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8bb122aa-2ce7-4a84-ab92-cbf4956e1cb6">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="1ec7c590-d5ab-467b-add2-da594e33dc94" testId="7691aff3-924f-e660-60bd-31959749d27f" testName="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_ModifyTransform_Position_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4049913+08:00" endTime="2026-05-13T12:48:51.4049913+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1ec7c590-d5ab-467b-add2-da594e33dc94">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3cd1810e-9162-46b2-b868-abf450d02aa5" testId="0fdf7e22-be21-bc8f-7b03-61e9f07dcd52" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.SkipIfUnityNotRunningTest" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4034560+08:00" endTime="2026-05-13T12:48:51.4034560+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3cd1810e-9162-46b2-b868-abf450d02aa5">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="23f54dc0-3b15-4f7f-af04-0bafe0fb6597" testId="20a76188-3854-af3d-bf23-4b6bc0216cfd" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_RuntimeException_DivideByZero" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4032881+08:00" endTime="2026-05-13T12:48:51.4032881+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="23f54dc0-3b15-4f7f-af04-0bafe0fb6597">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="2504be01-8f88-45ad-98b7-c00b964b87f9" testId="f7074c53-a643-1446-d2cf-112711c0861b" testName="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_FindGameObject_ByName_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4050244+08:00" endTime="2026-05-13T12:48:51.4050244+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2504be01-8f88-45ad-98b7-c00b964b87f9">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ca9df95f-50b0-464f-a676-d81c211c2c73" testId="d1858e41-e4dc-3a7e-5bb5-7fb95230c743" testName="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CS0246_MissingUsing_SingleRetry_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4055671+08:00" endTime="2026-05-13T12:48:51.4055671+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ca9df95f-50b0-464f-a676-d81c211c2c73">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0c19ae90-b923-4f57-91ec-7afbb3e470b1" testId="55dff90f-7b66-0dc6-3c8c-6bf94cfefd6b" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_RuntimeException_ReturnsError" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4035546+08:00" endTime="2026-05-13T12:48:51.4035546+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c19ae90-b923-4f57-91ec-7afbb3e470b1">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="6f29ee94-89d6-4fbe-98ae-0077cde214bf" testId="47d97ce6-d005-fef8-f114-c3c8dc99f50d" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_Timeout_ReturnsTimeoutError" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4044024+08:00" endTime="2026-05-13T12:48:51.4044024+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6f29ee94-89d6-4fbe-98ae-0077cde214bf">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="45c9e2b7-aa26-4a62-ac79-1f417e772027" testId="b4ed4341-ca3b-4d4f-23d3-0f075e6d45fb" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_InvalidCode_ReturnsCompilationError" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4045533+08:00" endTime="2026-05-13T12:48:51.4045533+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="45c9e2b7-aa26-4a62-ac79-1f417e772027">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="140c88f5-7b7d-44ea-a440-af57faa4811a" testId="0a66691e-edfc-408a-bd28-aee11b9dabd3" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_SimpleExpression_Returns2" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4035043+08:00" endTime="2026-05-13T12:48:51.4035044+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="140c88f5-7b7d-44ea-a440-af57faa4811a">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0ea296c8-3eca-4b8b-a86f-e598a40f2e90" testId="2f1cbea5-68c2-916c-3935-8062b08de07b" testName="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.ExecDuringDomainReload_RetriesAndRecovers" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.3883567+08:00" endTime="2026-05-13T12:48:51.3883567+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0ea296c8-3eca-4b8b-a86f-e598a40f2e90">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9f741739-7c59-4aa0-bfbf-071c99e9957d" testId="4556608d-86dd-773f-cad3-895f0f856a18" testName="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_UsingUnityEngine_ReturnsResult" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.3873591+08:00" endTime="2026-05-13T12:48:51.3873592+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9f741739-7c59-4aa0-bfbf-071c99e9957d">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="471b7b97-1e23-4558-b185-eb54a383ecf2" testId="cbe7477d-de47-af25-5f88-4a464297b287" testName="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_FindObjectsOfType_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4045964+08:00" endTime="2026-05-13T12:48:51.4045964+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="471b7b97-1e23-4558-b185-eb54a383ecf2">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4d56d238-23cc-4272-b152-54e8bb290358" testId="042a72b1-1684-e5d1-8c22-826bb2c686a9" testName="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_InstantiateAndDestroy_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4050940+08:00" endTime="2026-05-13T12:48:51.4050941+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4d56d238-23cc-4272-b152-54e8bb290358">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="5afd0f7c-bfc2-4ce3-8d40-ffd6c58e6e6c" testId="277f1bab-c775-82e0-96e9-395444908ff4" testName="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.SkipIfUnityNotRunningTest" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.3836153+08:00" endTime="2026-05-13T12:48:51.3836235+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5afd0f7c-bfc2-4ce3-8d40-ffd6c58e6e6c">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="058f84b8-2ce1-4a29-a2e6-799796fed125" testId="e58c0782-5ace-85db-f87a-a4df913f900e" testName="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CompileMode_EmitError_Analyzed" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4051296+08:00" endTime="2026-05-13T12:48:51.4051296+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="058f84b8-2ce1-4a29-a2e6-799796fed125">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b3fa8cd8-d041-4f00-9945-f06541719419" testId="a290cd6e-1059-814a-a903-af27aacb77eb" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_UnityVersion_ReturnsVersion" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4034033+08:00" endTime="2026-05-13T12:48:51.4034034+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b3fa8cd8-d041-4f00-9945-f06541719419">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0897f753-f719-4452-b76c-292462749e4c" testId="4f71ce41-47fa-c45b-d087-90fb359e0b0a" testName="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_PortUnchanged_FallsBackToLogParsing" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.3906656+08:00" endTime="2026-05-13T12:48:51.3906657+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0897f753-f719-4452-b76c-292462749e4c">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="cd63dd69-aeb3-41d2-aea2-eab40ab9e4bb" testId="c0700c79-3dd1-3075-9a3e-9cf32dc71d32" testName="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_ScriptMode_ExplicitUsing_Preloaded" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4053951+08:00" endTime="2026-05-13T12:48:51.4053951+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cd63dd69-aeb3-41d2-aea2-eab40ab9e4bb">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="2e2c1e4b-dd9e-44b0-80b1-68bc2bf20670" testId="b46e27d2-5b37-81b6-8e7f-6add77146a72" testName="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.SkipIfUnityNotRunningTest" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4048869+08:00" endTime="2026-05-13T12:48:51.4048870+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2e2c1e4b-dd9e-44b0-80b1-68bc2bf20670">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="193dbe8b-ec56-4ce2-bb38-56dae9361b14" testId="e0e9aef8-6d48-bbcf-7db8-89ab6575c42b" testName="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_CreateGameObjectHierarchy_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4046653+08:00" endTime="2026-05-13T12:48:51.4046653+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="193dbe8b-ec56-4ce2-bb38-56dae9361b14">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="e1206e46-66a4-4783-9a9c-f6488bc27480" testId="fe49957a-2711-27c1-d720-087caacf445e" testName="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CS0234_NamespaceNotFound_SingleRetry_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4053265+08:00" endTime="2026-05-13T12:48:51.4053265+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e1206e46-66a4-4783-9a9c-f6488bc27480">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="468d4e99-3865-4de6-ac25-99ad7a70df47" testId="2749c913-8ca0-cb6f-7890-4e03772ae577" testName="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.SkipIfUnityNotRunningTest" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4054929+08:00" endTime="2026-05-13T12:48:51.4054929+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="468d4e99-3865-4de6-ac25-99ad7a70df47">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f915d9be-8daa-4fb3-b40b-389196227de2" testId="5e74eb10-146b-7e32-0306-6bc7f1abb3e1" testName="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_BatchModifyComponents_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4049574+08:00" endTime="2026-05-13T12:48:51.4049574+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f915d9be-8daa-4fb3-b40b-389196227de2">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="1768bb91-ee4b-469e-bf4a-8fa4e9ebcfe6" testId="9a805c53-ee9b-fc1f-91f7-80d67a22898a" testName="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_CompileTimeout_ReturnsTimeout" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.3877945+08:00" endTime="2026-05-13T12:48:51.3877946+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1768bb91-ee4b-469e-bf4a-8fa4e9ebcfe6">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="edd179e3-4e20-4679-9d94-5f402a706db3" testId="560e80dd-6220-38fd-b32f-43fb1f587d0d" testName="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_Idempotent_DomainReloadIdempotent" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4032178+08:00" endTime="2026-05-13T12:48:51.4032179+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="edd179e3-4e20-4679-9d94-5f402a706db3">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4acad6f3-f805-47f3-80cd-d34d4dadc556" testId="858b7d50-1bc5-08a3-7ebb-27d723939d5e" testName="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_UserCodeSyntaxError_NoRetry" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4054290+08:00" endTime="2026-05-13T12:48:51.4054290+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4acad6f3-f805-47f3-80cd-d34d4dadc556">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="05d94ea2-2c0f-496a-8a62-99174029e8d0" testId="e26135a8-c50a-678e-cdd9-f18bba9f0a82" testName="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_CreateGameObject_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4049231+08:00" endTime="2026-05-13T12:48:51.4049231+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="05d94ea2-2c0f-496a-8a62-99174029e8d0">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="972bb547-b276-494c-93c6-52dd8e8cc78b" testId="67c561d7-2164-e7d7-5afc-aa87e25524c6" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_ScriptMode_ReturnValue_PrimitiveTypes" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4045158+08:00" endTime="2026-05-13T12:48:51.4045158+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="972bb547-b276-494c-93c6-52dd8e8cc78b">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4b650470-1743-4e48-8541-8e66d2ede0ac" testId="d247e690-6ff9-dedd-b3c6-09c5c734c3d2" testName="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_NoExecuteMethod_ReturnsError" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4043584+08:00" endTime="2026-05-13T12:48:51.4043584+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4b650470-1743-4e48-8541-8e66d2ede0ac">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="16ebd4ae-5f5b-4a85-a8d8-a344f0c38a9c" testId="2054ea7e-b3f1-a003-8e66-cc33f01ad172" testName="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_MultipleErrors_MultiRetry_Succeeds" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.4052909+08:00" endTime="2026-05-13T12:48:51.4052909+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="16ebd4ae-5f5b-4a85-a8d8-a344f0c38a9c">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a6a5418a-6e02-4670-8606-bc7ccb12c6bc" testId="4e23324e-570a-3864-2129-f9ba7aab0b2a" testName="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_InvalidCode_ReturnsCompilationError" computerName="DESKTOP-8UFRM9R" duration="00:00:00.0010000" startTime="2026-05-13T12:48:51.3864980+08:00" endTime="2026-05-13T12:48:51.3864981+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a6a5418a-6e02-4670-8606-bc7ccb12c6bc">
+      <Output>
+        <ErrorInfo>
+          <Message>Unity Editor is not running with .Unity2019 project</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CompileMode_ExplicitUsing_Preloaded" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="4ec23efc-d57c-5a63-3cf0-0dd8a9374e21">
+      <Execution id="85b27a30-f407-442d-b3f7-200c30069af6" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests" name="Fallback_CompileMode_ExplicitUsing_Preloaded" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_RuntimeException_DivideByZero" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="20a76188-3854-af3d-bf23-4b6bc0216cfd">
+      <Execution id="23f54dc0-3b15-4f7f-af04-0bafe0fb6597" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="ExecuteAsync_RuntimeException_DivideByZero" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CompileMode_EmitError_Analyzed" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="e58c0782-5ace-85db-f87a-a4df913f900e">
+      <Execution id="058f84b8-2ce1-4a29-a2e6-799796fed125" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests" name="Fallback_CompileMode_EmitError_Analyzed" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CS0234_NamespaceNotFound_SingleRetry_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="fe49957a-2711-27c1-d720-087caacf445e">
+      <Execution id="e1206e46-66a4-4783-9a9c-f6488bc27480" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests" name="Fallback_CS0234_NamespaceNotFound_SingleRetry_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_SimpleExpression_Returns2" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="0a66691e-edfc-408a-bd28-aee11b9dabd3">
+      <Execution id="140c88f5-7b7d-44ea-a440-af57faa4811a" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="ExecuteAsync_SimpleExpression_Returns2" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_FindObjectsOfType_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="cbe7477d-de47-af25-5f88-4a464297b287">
+      <Execution id="471b7b97-1e23-4558-b185-eb54a383ecf2" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests" name="CompileMode_FindObjectsOfType_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_ModifyTransform_RotationScale_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="723da426-6192-e70f-99ff-83f475952248">
+      <Execution id="3fb38eaf-a3d1-490b-a65f-86a7e711ea6d" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests" name="ScriptMode_ModifyTransform_RotationScale_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_InvalidCode_ReturnsCompilationError" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="4e23324e-570a-3864-2129-f9ba7aab0b2a">
+      <Execution id="a6a5418a-6e02-4670-8606-bc7ccb12c6bc" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests" name="CompileMode_InvalidCode_ReturnsCompilationError" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_PortUnchanged_FallsBackToLogParsing" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="4f71ce41-47fa-c45b-d087-90fb359e0b0a">
+      <Execution id="0897f753-f719-4452-b76c-292462749e4c" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests" name="CompileAsync_PortUnchanged_FallsBackToLogParsing" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_ScriptMode_ReturnValue_PrimitiveTypes" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="67c561d7-2164-e7d7-5afc-aa87e25524c6">
+      <Execution id="972bb547-b276-494c-93c6-52dd8e8cc78b" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="ExecuteAsync_ScriptMode_ReturnValue_PrimitiveTypes" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_StaticClass_ExecutesCorrectly" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="5654694d-e575-0b10-05da-cff5fb1f6057">
+      <Execution id="dd0b8c61-918d-4fd8-88af-668b4d6f9d36" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests" name="CompileMode_StaticClass_ExecutesCorrectly" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_UnityVersion_ReturnsVersion" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="a290cd6e-1059-814a-a903-af27aacb77eb">
+      <Execution id="b3fa8cd8-d041-4f00-9945-f06541719419" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="ExecuteAsync_UnityVersion_ReturnsVersion" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CS0246_MissingUsing_SingleRetry_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="d1858e41-e4dc-3a7e-5bb5-7fb95230c743">
+      <Execution id="ca9df95f-50b0-464f-a676-d81c211c2c73" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests" name="Fallback_CS0246_MissingUsing_SingleRetry_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_UsingUnityEngine_ReturnsResult" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="4556608d-86dd-773f-cad3-895f0f856a18">
+      <Execution id="9f741739-7c59-4aa0-bfbf-071c99e9957d" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests" name="CompileMode_UsingUnityEngine_ReturnsResult" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_BatchModifyComponents_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="5e74eb10-146b-7e32-0306-6bc7f1abb3e1">
+      <Execution id="f915d9be-8daa-4fb3-b40b-389196227de2" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests" name="CompileMode_BatchModifyComponents_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_UserCodeSyntaxError_NoRetry" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="858b7d50-1bc5-08a3-7ebb-27d723939d5e">
+      <Execution id="4acad6f3-f805-47f3-80cd-d34d4dadc556" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests" name="Fallback_UserCodeSyntaxError_NoRetry" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_UnityEngineType_ReturnsExpectedValue" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="4ce6a00d-65a1-ce3e-5844-1f14da846f87">
+      <Execution id="6e7a426b-23b9-4569-9d5d-d4b4d1aaf581" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="ExecuteAsync_UnityEngineType_ReturnsExpectedValue" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_AddComponent_BoxCollider_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="1bb5fe58-5b99-9126-2295-45a5ab23c704">
+      <Execution id="7d64b982-9cfb-4136-ad80-35dea031a7ec" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests" name="ScriptMode_AddComponent_BoxCollider_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_Idempotent_DomainReloadIdempotent" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="560e80dd-6220-38fd-b32f-43fb1f587d0d">
+      <Execution id="edd179e3-4e20-4679-9d94-5f402a706db3" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests" name="CompileAsync_Idempotent_DomainReloadIdempotent" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_Timeout_ReturnsTimeoutError" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="47d97ce6-d005-fef8-f114-c3c8dc99f50d">
+      <Execution id="6f29ee94-89d6-4fbe-98ae-0077cde214bf" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="ExecuteAsync_Timeout_ReturnsTimeoutError" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_CompileTimeout_ReturnsTimeout" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="9a805c53-ee9b-fc1f-91f7-80d67a22898a">
+      <Execution id="1768bb91-ee4b-469e-bf4a-8fa4e9ebcfe6" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests" name="CompileAsync_CompileTimeout_ReturnsTimeout" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_CreateGameObjectHierarchy_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="e0e9aef8-6d48-bbcf-7db8-89ab6575c42b">
+      <Execution id="193dbe8b-ec56-4ce2-bb38-56dae9361b14" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests" name="CompileMode_CreateGameObjectHierarchy_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_ThreeRetriesExhausted_ReturnsError" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="3b4c0e3d-1ad5-0ea9-364a-fe4e8bcc8659">
+      <Execution id="f7b67cb0-587d-45fa-9755-8439ba78ebe2" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests" name="Fallback_ThreeRetriesExhausted_ReturnsError" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_RuntimeException_ReturnsError" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="55dff90f-7b66-0dc6-3c8c-6bf94cfefd6b">
+      <Execution id="0c19ae90-b923-4f57-91ec-7afbb3e470b1" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="CompileMode_RuntimeException_ReturnsError" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_ExecuteNotStatic_ReturnsError" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="122af397-878d-301c-795b-3bee62318895">
+      <Execution id="643477a3-1030-4c7a-b176-92e0018b69a2" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="CompileMode_ExecuteNotStatic_ReturnsError" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_DestroyGameObject_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="659d8eef-7e4d-1590-3e3a-733eb62a78e1">
+      <Execution id="8bb122aa-2ce7-4a84-ab92-cbf4956e1cb6" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests" name="ScriptMode_DestroyGameObject_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_CreateGameObject_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="e26135a8-c50a-678e-cdd9-f18bba9f0a82">
+      <Execution id="05d94ea2-2c0f-496a-8a62-99174029e8d0" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests" name="ScriptMode_CreateGameObject_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.SkipIfUnityNotRunningTest" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="277f1bab-c775-82e0-96e9-395444908ff4">
+      <Execution id="5afd0f7c-bfc2-4ce3-8d40-ffd6c58e6e6c" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests" name="SkipIfUnityNotRunningTest" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_ScriptMode_ExplicitUsing_Preloaded" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="c0700c79-3dd1-3075-9a3e-9cf32dc71d32">
+      <Execution id="cd63dd69-aeb3-41d2-aea2-eab40ab9e4bb" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests" name="Fallback_ScriptMode_ExplicitUsing_Preloaded" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_InvalidCode_ReturnsCompilationError" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="b4ed4341-ca3b-4d4f-23d3-0f075e6d45fb">
+      <Execution id="45c9e2b7-aa26-4a62-ac79-1f417e772027" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="ExecuteAsync_InvalidCode_ReturnsCompilationError" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_CompileMode_ExecutesMethod" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="9822eb12-3a5d-ba86-0098-33fd4d4bca62">
+      <Execution id="7802f2f1-0936-4190-8fdf-a108da96d964" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="ExecuteAsync_CompileMode_ExecutesMethod" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_ModifyTransform_Position_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="7691aff3-924f-e660-60bd-31959749d27f">
+      <Execution id="1ec7c590-d5ab-467b-add2-da594e33dc94" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests" name="ScriptMode_ModifyTransform_Position_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_ValidClass_ExecutesAndReturnsResult" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="428b0254-9406-c06f-d086-a4a6c844f596">
+      <Execution id="cbfe41c9-2c65-4a65-8100-ce1bf85d1feb" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests" name="CompileMode_ValidClass_ExecutesAndReturnsResult" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.SkipIfUnityNotRunningTest" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="0fdf7e22-be21-bc8f-7b03-61e9f07dcd52">
+      <Execution id="3cd1810e-9162-46b2-b868-abf450d02aa5" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="SkipIfUnityNotRunningTest" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_CompileMode_MultipleExecuteMethods_UsesFirst" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="27c256a5-6fdc-38eb-4fc5-6dc1e7036669">
+      <Execution id="34bc9415-16ee-4285-af80-c0cb82f1fa84" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="ExecuteAsync_CompileMode_MultipleExecuteMethods_UsesFirst" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_MultipleErrors_MultiRetry_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="2054ea7e-b3f1-a003-8e66-cc33f01ad172">
+      <Execution id="16ebd4ae-5f5b-4a85-a8d8-a344f0c38a9c" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests" name="Fallback_MultipleErrors_MultiRetry_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_MultipleErrors_AllReported" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="52c20f91-31b1-04a7-3ab9-f6b8355da538">
+      <Execution id="591e6fcb-c896-4471-aa22-20c284e32423" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests" name="CompileMode_MultipleErrors_AllReported" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_EvalMode_CompilationErrorException_Analyzed" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="80501608-3296-e985-2b89-acad2d112cf2">
+      <Execution id="0a3fa13d-b894-48c9-884d-4c4e34149e98" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests" name="Fallback_EvalMode_CompilationErrorException_Analyzed" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.SkipIfUnityNotRunningTest" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="2749c913-8ca0-cb6f-7890-4e03772ae577">
+      <Execution id="468d4e99-3865-4de6-ac25-99ad7a70df47" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests" name="SkipIfUnityNotRunningTest" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.SkipIfUnityNotRunningTest" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="b46e27d2-5b37-81b6-8e7f-6add77146a72">
+      <Execution id="2e2c1e4b-dd9e-44b0-80b1-68bc2bf20670" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests" name="SkipIfUnityNotRunningTest" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.ExecDuringDomainReload_RetriesAndRecovers" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="2f1cbea5-68c2-916c-3935-8062b08de07b">
+      <Execution id="0ea296c8-3eca-4b8b-a86f-e598a40f2e90" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests" name="ExecDuringDomainReload_RetriesAndRecovers" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_FindGameObject_ByName_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="f7074c53-a643-1446-d2cf-112711c0861b">
+      <Execution id="2504be01-8f88-45ad-98b7-c00b964b87f9" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests" name="ScriptMode_FindGameObject_ByName_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_InstantiateAndDestroy_Succeeds" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="042a72b1-1684-e5d1-8c22-826bb2c686a9">
+      <Execution id="4d56d238-23cc-4272-b152-54e8bb290358" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests" name="ScriptMode_InstantiateAndDestroy_Succeeds" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_TriggersCompilation_PortChanges" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="dad2b07a-f20c-ff7b-6b93-37b24e8b0eeb">
+      <Execution id="9d42f3d2-e80d-492d-a82b-b74614cf6a15" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests" name="CompileAsync_TriggersCompilation_PortChanges" />
+    </UnitTest>
+    <UnitTest name="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_NoExecuteMethod_ReturnsError" storage="c:\work\joker-unity-cli\.src\joker.unitycli.tests\bin\debug\net8.0\joker.unitycli.tests.dll" id="d247e690-6ff9-dedd-b3c6-09c5c734c3d2">
+      <Execution id="4b650470-1743-4e48-8541-8e66d2ede0ac" />
+      <TestMethod codeBase="C:\work\joker-unity-cli\.src\Joker.UnityCli.Tests\bin\Debug\net8.0\Joker.UnityCli.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests" name="CompileMode_NoExecuteMethod_ReturnsError" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="1bb5fe58-5b99-9126-2295-45a5ab23c704" executionId="7d64b982-9cfb-4136-ad80-35dea031a7ec" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="122af397-878d-301c-795b-3bee62318895" executionId="643477a3-1030-4c7a-b176-92e0018b69a2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dad2b07a-f20c-ff7b-6b93-37b24e8b0eeb" executionId="9d42f3d2-e80d-492d-a82b-b74614cf6a15" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="52c20f91-31b1-04a7-3ab9-f6b8355da538" executionId="591e6fcb-c896-4471-aa22-20c284e32423" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9822eb12-3a5d-ba86-0098-33fd4d4bca62" executionId="7802f2f1-0936-4190-8fdf-a108da96d964" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4ec23efc-d57c-5a63-3cf0-0dd8a9374e21" executionId="85b27a30-f407-442d-b3f7-200c30069af6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4ce6a00d-65a1-ce3e-5844-1f14da846f87" executionId="6e7a426b-23b9-4569-9d5d-d4b4d1aaf581" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="723da426-6192-e70f-99ff-83f475952248" executionId="3fb38eaf-a3d1-490b-a65f-86a7e711ea6d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3b4c0e3d-1ad5-0ea9-364a-fe4e8bcc8659" executionId="f7b67cb0-587d-45fa-9755-8439ba78ebe2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5654694d-e575-0b10-05da-cff5fb1f6057" executionId="dd0b8c61-918d-4fd8-88af-668b4d6f9d36" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="27c256a5-6fdc-38eb-4fc5-6dc1e7036669" executionId="34bc9415-16ee-4285-af80-c0cb82f1fa84" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="428b0254-9406-c06f-d086-a4a6c844f596" executionId="cbfe41c9-2c65-4a65-8100-ce1bf85d1feb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="80501608-3296-e985-2b89-acad2d112cf2" executionId="0a3fa13d-b894-48c9-884d-4c4e34149e98" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="659d8eef-7e4d-1590-3e3a-733eb62a78e1" executionId="8bb122aa-2ce7-4a84-ab92-cbf4956e1cb6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7691aff3-924f-e660-60bd-31959749d27f" executionId="1ec7c590-d5ab-467b-add2-da594e33dc94" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0fdf7e22-be21-bc8f-7b03-61e9f07dcd52" executionId="3cd1810e-9162-46b2-b868-abf450d02aa5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="20a76188-3854-af3d-bf23-4b6bc0216cfd" executionId="23f54dc0-3b15-4f7f-af04-0bafe0fb6597" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f7074c53-a643-1446-d2cf-112711c0861b" executionId="2504be01-8f88-45ad-98b7-c00b964b87f9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d1858e41-e4dc-3a7e-5bb5-7fb95230c743" executionId="ca9df95f-50b0-464f-a676-d81c211c2c73" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="55dff90f-7b66-0dc6-3c8c-6bf94cfefd6b" executionId="0c19ae90-b923-4f57-91ec-7afbb3e470b1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="47d97ce6-d005-fef8-f114-c3c8dc99f50d" executionId="6f29ee94-89d6-4fbe-98ae-0077cde214bf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b4ed4341-ca3b-4d4f-23d3-0f075e6d45fb" executionId="45c9e2b7-aa26-4a62-ac79-1f417e772027" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0a66691e-edfc-408a-bd28-aee11b9dabd3" executionId="140c88f5-7b7d-44ea-a440-af57faa4811a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2f1cbea5-68c2-916c-3935-8062b08de07b" executionId="0ea296c8-3eca-4b8b-a86f-e598a40f2e90" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4556608d-86dd-773f-cad3-895f0f856a18" executionId="9f741739-7c59-4aa0-bfbf-071c99e9957d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cbe7477d-de47-af25-5f88-4a464297b287" executionId="471b7b97-1e23-4558-b185-eb54a383ecf2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="042a72b1-1684-e5d1-8c22-826bb2c686a9" executionId="4d56d238-23cc-4272-b152-54e8bb290358" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="277f1bab-c775-82e0-96e9-395444908ff4" executionId="5afd0f7c-bfc2-4ce3-8d40-ffd6c58e6e6c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e58c0782-5ace-85db-f87a-a4df913f900e" executionId="058f84b8-2ce1-4a29-a2e6-799796fed125" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a290cd6e-1059-814a-a903-af27aacb77eb" executionId="b3fa8cd8-d041-4f00-9945-f06541719419" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4f71ce41-47fa-c45b-d087-90fb359e0b0a" executionId="0897f753-f719-4452-b76c-292462749e4c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c0700c79-3dd1-3075-9a3e-9cf32dc71d32" executionId="cd63dd69-aeb3-41d2-aea2-eab40ab9e4bb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b46e27d2-5b37-81b6-8e7f-6add77146a72" executionId="2e2c1e4b-dd9e-44b0-80b1-68bc2bf20670" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e0e9aef8-6d48-bbcf-7db8-89ab6575c42b" executionId="193dbe8b-ec56-4ce2-bb38-56dae9361b14" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fe49957a-2711-27c1-d720-087caacf445e" executionId="e1206e46-66a4-4783-9a9c-f6488bc27480" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2749c913-8ca0-cb6f-7890-4e03772ae577" executionId="468d4e99-3865-4de6-ac25-99ad7a70df47" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5e74eb10-146b-7e32-0306-6bc7f1abb3e1" executionId="f915d9be-8daa-4fb3-b40b-389196227de2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9a805c53-ee9b-fc1f-91f7-80d67a22898a" executionId="1768bb91-ee4b-469e-bf4a-8fa4e9ebcfe6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="560e80dd-6220-38fd-b32f-43fb1f587d0d" executionId="edd179e3-4e20-4679-9d94-5f402a706db3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="858b7d50-1bc5-08a3-7ebb-27d723939d5e" executionId="4acad6f3-f805-47f3-80cd-d34d4dadc556" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e26135a8-c50a-678e-cdd9-f18bba9f0a82" executionId="05d94ea2-2c0f-496a-8a62-99174029e8d0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="67c561d7-2164-e7d7-5afc-aa87e25524c6" executionId="972bb547-b276-494c-93c6-52dd8e8cc78b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d247e690-6ff9-dedd-b3c6-09c5c734c3d2" executionId="4b650470-1743-4e48-8541-8e66d2ede0ac" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2054ea7e-b3f1-a003-8e66-cc33f01ad172" executionId="16ebd4ae-5f5b-4a85-a8d8-a344f0c38a9c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4e23324e-570a-3864-2129-f9ba7aab0b2a" executionId="a6a5418a-6e02-4670-8606-bc7ccb12c6bc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="45" executed="0" passed="0" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.5.3.1+6b60a9e56a (64-bit .NET 8.0.22)&#xD;
+[xUnit.net 00:00:00.04]   Discovering: Joker.UnityCli.Tests&#xD;
+[xUnit.net 00:00:00.06]   Discovered:  Joker.UnityCli.Tests&#xD;
+[xUnit.net 00:00:00.06]   Starting:    Joker.UnityCli.Tests&#xD;
+[xUnit.net 00:00:00.09]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.09]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.09]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.09]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.09]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.09]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.09]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.09]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.09]       Unity Editor is not running with .Unity2019 project&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.SkipIfUnityNotRunningTest”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_TriggersCompilation_PortChanges”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_StaticClass_ExecutesCorrectly”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_InvalidCode_ReturnsCompilationError”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_ValidClass_ExecutesAndReturnsResult”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_UsingUnityEngine_ReturnsResult”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_CompileTimeout_ReturnsTimeout”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.ExecDuringDomainReload_RetriesAndRecovers”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_PortUnchanged_FallsBackToLogParsing”。&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_MultipleErrors_AllReported”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_Idempotent_DomainReloadIdempotent”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_RuntimeException_DivideByZero”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_CompileMode_MultipleExecuteMethods_UsesFirst”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_UnityVersion_ReturnsVersion”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.SkipIfUnityNotRunningTest”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_SimpleExpression_Returns2”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_RuntimeException_ReturnsError”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_ExecuteNotStatic_ReturnsError”。&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_NoExecuteMethod_ReturnsError”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_Timeout_ReturnsTimeoutError”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_UnityEngineType_ReturnsExpectedValue”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_CompileMode_ExecutesMethod”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_ScriptMode_ReturnValue_PrimitiveTypes”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_InvalidCode_ReturnsCompilationError”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_FindObjectsOfType_Succeeds”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_DestroyGameObject_Succeeds”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_CreateGameObjectHierarchy_Succeeds”。&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_ModifyTransform_RotationScale_Succeeds”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.SkipIfUnityNotRunningTest”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_CreateGameObject_Succeeds”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_BatchModifyComponents_Succeeds”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_ModifyTransform_Position_Succeeds”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_FindGameObject_ByName_Succeeds”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_AddComponent_BoxCollider_Succeeds”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_InstantiateAndDestroy_Succeeds”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CompileMode_EmitError_Analyzed”。&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]       Unity Editor is not running with .Unity2019 project&#xD;
+[xUnit.net 00:00:00.11]   Finished:    Joker.UnityCli.Tests&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_MultipleErrors_MultiRetry_Succeeds”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CS0234_NamespaceNotFound_SingleRetry_Succeeds”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_ThreeRetriesExhausted_ReturnsError”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_ScriptMode_ExplicitUsing_Preloaded”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_UserCodeSyntaxError_NoRetry”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_EvalMode_CompilationErrorException_Analyzed”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.SkipIfUnityNotRunningTest”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CompileMode_ExplicitUsing_Preloaded”。&#xD;
+在测试运行中跳过测试“Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CS0246_MissingUsing_SingleRetry_Succeeds”。&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.3833805+08:00">
+        <Text>[xUnit.net 00:00:00.09]     Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.SkipIfUnityNotRunningTest [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.3856838+08:00">
+        <Text>[xUnit.net 00:00:00.09]     Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_TriggersCompilation_PortChanges [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.3861183+08:00">
+        <Text>[xUnit.net 00:00:00.09]     Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_StaticClass_ExecutesCorrectly [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.3865446+08:00">
+        <Text>[xUnit.net 00:00:00.09]     Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_InvalidCode_ReturnsCompilationError [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.3869215+08:00">
+        <Text>[xUnit.net 00:00:00.09]     Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_ValidClass_ExecutesAndReturnsResult [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.3873496+08:00">
+        <Text>[xUnit.net 00:00:00.09]     Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_UsingUnityEngine_ReturnsResult [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.3877891+08:00">
+        <Text>[xUnit.net 00:00:00.09]     Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_CompileTimeout_ReturnsTimeout [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.3900418+08:00">
+        <Text>[xUnit.net 00:00:00.09]     Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.ExecDuringDomainReload_RetriesAndRecovers [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.3906951+08:00">
+        <Text>[xUnit.net 00:00:00.09]     Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_PortUnchanged_FallsBackToLogParsing [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4221507+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileMode_MultipleErrors_AllReported [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4221627+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.CompilePipelineIntegrationTests.CompileAsync_Idempotent_DomainReloadIdempotent [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4221739+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_RuntimeException_DivideByZero [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4221857+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_CompileMode_MultipleExecuteMethods_UsesFirst [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4221965+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_UnityVersion_ReturnsVersion [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4222098+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.SkipIfUnityNotRunningTest [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4222205+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_SimpleExpression_Returns2 [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4222311+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_RuntimeException_ReturnsError [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4222433+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_ExecuteNotStatic_ReturnsError [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4225342+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.CompileMode_NoExecuteMethod_ReturnsError [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4225450+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_Timeout_ReturnsTimeoutError [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4225557+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_UnityEngineType_ReturnsExpectedValue [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4225947+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_CompileMode_ExecutesMethod [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4226093+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_ScriptMode_ReturnValue_PrimitiveTypes [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4226208+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ExecPipelineIntegrationTests.ExecuteAsync_InvalidCode_ReturnsCompilationError [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4226313+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_FindObjectsOfType_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4226420+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_DestroyGameObject_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4226580+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_CreateGameObjectHierarchy_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4229124+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_ModifyTransform_RotationScale_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4229231+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.SkipIfUnityNotRunningTest [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4229340+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_CreateGameObject_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4229454+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.CompileMode_BatchModifyComponents_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4229587+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_ModifyTransform_Position_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4229694+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_FindGameObject_ByName_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4229808+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_AddComponent_BoxCollider_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4229912+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.GameObjectIntegrationTests.ScriptMode_InstantiateAndDestroy_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4230014+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CompileMode_EmitError_Analyzed [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4232156+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_MultipleErrors_MultiRetry_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4232262+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CS0234_NamespaceNotFound_SingleRetry_Succeeds [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4232369+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_ThreeRetriesExhausted_ReturnsError [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4232476+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_ScriptMode_ExplicitUsing_Preloaded [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4232615+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_UserCodeSyntaxError_NoRetry [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4232715+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_EvalMode_CompilationErrorException_Analyzed [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4232818+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.SkipIfUnityNotRunningTest [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4232922+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CompileMode_ExplicitUsing_Preloaded [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-8UFRM9R" outcome="Warning" timestamp="2026-05-13T12:48:51.4233025+08:00">
+        <Text>[xUnit.net 00:00:00.11]     Joker.UnityCli.Tests.Integration.ImportFallbackIntegrationTests.Fallback_CS0246_MissingUsing_SingleRetry_Succeeds [SKIP]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

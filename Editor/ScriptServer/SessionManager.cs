@@ -6,7 +6,7 @@ using Joker.UnityCli.Editor.Models;
 
 namespace Joker.UnityCli.Editor.ScriptServer
 {
-    internal class Session
+    public class Session
     {
         private int _started;
         public TaskCompletionSource<ExecResult> CompletionSource { get; }

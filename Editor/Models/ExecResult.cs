@@ -8,6 +8,9 @@ namespace Joker.UnityCli.Editor.Models
         public string Result = "";
         public string Output = "";
         public string Error = "";
+        public string ErrorCode = "";
+        public string ErrorDetail = "";
         public long DurationMs;
     }
 }
+

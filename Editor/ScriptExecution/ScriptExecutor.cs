@@ -42,29 +42,28 @@ namespace Joker.UnityCli.Editor.ScriptExecution
 
         private static List<MetadataReference> GetDefaultReferences()
         {
-            var refs = new List<MetadataReference>
-            {
-                MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
-                MetadataReference.CreateFromFile(Assembly.Load("UnityEngine").Location),
-                MetadataReference.CreateFromFile(Assembly.Load("UnityEditor").Location),
-                MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(List<>).Assembly.Location),
-            };
-            TryAddReference(refs, typeof(System.IO.File));
-            TryAddReference(refs, typeof(System.Text.RegularExpressions.Regex));
-            TryAddReference(refs, typeof(System.Threading.Tasks.Task));
-            return refs;
-        }
+            var refs = new List<MetadataReference>();
+            var addedPaths = new HashSet<string>();
 
-        private static void TryAddReference(List<MetadataReference> refs, Type type)
-        {
-            try
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
             {
-                var loc = type.Assembly.Location;
-                if (!string.IsNullOrEmpty(loc))
-                    refs.Add(MetadataReference.CreateFromFile(loc));
+                if (asm.IsDynamic) continue;
+                try
+                {
+                    var loc = asm.Location;
+                    if (string.IsNullOrEmpty(loc) || !addedPaths.Add(loc))
+                        continue;
+
+                    // Read the assembly into memory first so Roslyn doesn't hold a file
+                    // handle that would prevent Unity from overwriting the DLL during
+                    // domain reload.
+                    var bytes = File.ReadAllBytes(loc);
+                    refs.Add(MetadataReference.CreateFromImage(bytes));
+                }
+                catch { }
             }
-            catch { }
+
+            return refs;
         }
 
         private static void ApplyFixes(List<ErrorAnalysis> fixes, List<MetadataReference> references, List<string> usings)
@@ -145,6 +144,8 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                                 Type = "exec_result",
                                 Success = false,
                                 Error = errors,
+                                ErrorCode = "compilation_error",
+                                ErrorDetail = errors,
                                 DurationMs = sw.ElapsedMilliseconds
                             };
                         }
@@ -159,6 +160,8 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                                 Type = "exec_result",
                                 Success = false,
                                 Error = errors,
+                                ErrorCode = "compilation_error",
+                                ErrorDetail = errors,
                                 DurationMs = sw.ElapsedMilliseconds
                             };
                         }
@@ -174,6 +177,8 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                     Type = "exec_result",
                     Success = false,
                     Error = "Max retries exceeded",
+                    ErrorCode = "compilation_error",
+                    ErrorDetail = "Script execution failed after applying automatic reference fixes.",
                     DurationMs = sw.ElapsedMilliseconds
                 };
             }
@@ -185,6 +190,7 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                     Type = "exec_result",
                     Success = false,
                     Error = $"Timed out after {timeoutMs}ms",
+                    ErrorCode = "timeout",
                     DurationMs = sw.ElapsedMilliseconds
                 };
             }
@@ -195,7 +201,9 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                 {
                     Type = "exec_result",
                     Success = false,
-                    Error = ex.ToString(),
+                    Error = ex.Message,
+                    ErrorCode = "execution_error",
+                    ErrorDetail = ex.ToString(),
                     DurationMs = sw.ElapsedMilliseconds
                 };
             }
@@ -235,6 +243,8 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                                 .SelectMany(t => t.GetMethods(BindingFlags.Public | BindingFlags.Static))
                                 .FirstOrDefault(m => m.Name == "Execute" && m.GetParameters().Length == 0);
 
+                            UnityEngine.Debug.Log($"[Joker] Compile debug: types={string.Join(",", assembly.GetTypes().Select(t => t.FullName))}, method={executeMethod?.DeclaringType?.FullName}.{executeMethod?.Name} ret={executeMethod?.ReturnType?.Name}");
+
                             if (executeMethod == null)
                             {
                                 sw.Stop();
@@ -243,11 +253,14 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                                     Type = "exec_result",
                                     Success = false,
                                     Error = "No 'public static void Execute()' method found.",
+                                    ErrorCode = "compilation_error",
+                                    ErrorDetail = "Compile mode requires a public static void Execute() method in the provided code.",
                                     DurationMs = sw.ElapsedMilliseconds
                                 };
                             }
 
                             var execResult = executeMethod.Invoke(null, null);
+                            UnityEngine.Debug.Log($"[Joker] Compile debug: invoke result={(execResult == null ? "NULL" : $"type={execResult.GetType().Name} val={execResult}")}");
                             sw.Stop();
                             return new ExecResult
                             {
@@ -269,6 +282,8 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                                 Type = "exec_result",
                                 Success = false,
                                 Error = errors,
+                                ErrorCode = "compilation_error",
+                                ErrorDetail = errors,
                                 DurationMs = sw.ElapsedMilliseconds
                             };
                         }
@@ -287,6 +302,8 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                                 Type = "exec_result",
                                 Success = false,
                                 Error = errors,
+                                ErrorCode = "compilation_error",
+                                ErrorDetail = errors,
                                 DurationMs = sw.ElapsedMilliseconds
                             };
                         }
@@ -302,6 +319,8 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                     Type = "exec_result",
                     Success = false,
                     Error = "Max retries exceeded",
+                    ErrorCode = "compilation_error",
+                    ErrorDetail = "Script execution failed after applying automatic reference fixes.",
                     DurationMs = sw.ElapsedMilliseconds
                 };
             }
@@ -313,6 +332,7 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                     Type = "exec_result",
                     Success = false,
                     Error = $"Timed out after {timeoutMs}ms",
+                    ErrorCode = "timeout",
                     DurationMs = sw.ElapsedMilliseconds
                 };
             }
@@ -323,7 +343,9 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                 {
                     Type = "exec_result",
                     Success = false,
-                    Error = ex.ToString(),
+                    Error = ex.Message,
+                    ErrorCode = "execution_error",
+                    ErrorDetail = ex.ToString(),
                     DurationMs = sw.ElapsedMilliseconds
                 };
             }

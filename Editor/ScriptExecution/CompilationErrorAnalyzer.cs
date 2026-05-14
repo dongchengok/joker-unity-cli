@@ -149,6 +149,25 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                         }
                         break;
 
+                    case "CS1069":
+                        // "The type name 'X' could not be found in the namespace 'Y'.
+                        //  This type has been forwarded to assembly 'Z, Version=...'"
+                        var cs1069Assembly = ExtractForwardedAssemblyFromCS1069(message);
+                        if (cs1069Assembly != null)
+                        {
+                            results.Add(new ErrorAnalysis
+                            {
+                                ErrorCode = "CS1069",
+                                FixAction = FixAction.AddReference,
+                                Detail = cs1069Assembly
+                            });
+                        }
+                        else
+                        {
+                            results.Add(new ErrorAnalysis { ErrorCode = "CS1069" });
+                        }
+                        break;
+
                     default:
                         results.Add(new ErrorAnalysis { ErrorCode = id });
                         break;
@@ -180,6 +199,18 @@ namespace Joker.UnityCli.Editor.ScriptExecution
             var match = System.Text.RegularExpressions.Regex.Match(
                 message, @"namespace\s+'([^']+)'");
             return match.Success ? match.Groups[1].Value : null;
+        }
+
+        private static string ExtractForwardedAssemblyFromCS1069(string message)
+        {
+            // "This type has been forwarded to assembly 'UnityEngine.CoreModule, Version=...'"
+            var match = System.Text.RegularExpressions.Regex.Match(
+                message, @"forwarded to assembly\s+'([^']+)'");
+            if (match.Success)
+            {
+                return match.Groups[1].Value.Split(',')[0].Trim();
+            }
+            return null;
         }
 
         private static string ExtractConflictingAssembly(string message)

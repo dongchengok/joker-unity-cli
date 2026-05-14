@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Concurrent;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,9 +12,15 @@ namespace Joker.UnityCli.Editor.ScriptServer
     {
         private static HttpListener _listener;
         private static CancellationTokenSource _cts;
+        private static Task _listenerTask;
         private static int _port;
 
+        // Track in-flight request tasks so Stop() can wait for them to complete,
+        // preventing DLL file locks during Unity domain reload.
+        private static readonly ConcurrentBag<Task> _handlerTasks = new ConcurrentBag<Task>();
+
         public static int Port => _port;
+        public static bool IsRunning => _listener != null && _listener.IsListening;
 
         public static void Start()
         {
@@ -29,14 +37,15 @@ namespace Joker.UnityCli.Editor.ScriptServer
             Debug.Log($"[JokerUnity] HTTP server started on port {_port}");
 
             var ct = _cts.Token;
-            Task.Run(async () =>
+            _listenerTask = Task.Run(async () =>
             {
                 try
                 {
                     while (!ct.IsCancellationRequested)
                     {
                         var context = await _listener.GetContextAsync();
-                        _ = Task.Run(() => HttpExecHandler.HandleAsync(context, ct), ct);
+                        var handlerTask = Task.Run(() => HttpExecHandler.HandleAsync(context, ct), ct);
+                        _handlerTasks.Add(handlerTask);
                     }
                 }
                 catch (HttpListenerException) { }
@@ -57,13 +66,34 @@ namespace Joker.UnityCli.Editor.ScriptServer
 
             _cts?.Cancel();
             SessionManager.CancelAll();
+
             if (_listener != null)
             {
                 try { _listener.Stop(); } catch { }
                 _listener = null;
             }
+
+            // Wait for listener loop and all in-flight request handlers to complete
+            // so they release all assembly references before Unity copies the new DLL.
+            var tasks = new System.Collections.Generic.List<Task>();
+            if (_listenerTask != null)
+                tasks.Add(_listenerTask);
+            tasks.AddRange(_handlerTasks);
+            if (tasks.Count > 0)
+            {
+                try { Task.WaitAll(tasks.ToArray(), TimeSpan.FromSeconds(3)); } catch { }
+            }
+
+            // Wait for ScriptExecutor tasks started from EditorApplication.update callbacks
+            HttpExecHandler.WaitForScriptTasks(TimeSpan.FromSeconds(3));
+
+            // Force GC to release dynamic assembly references
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+
+            _listenerTask = null;
             _cts = null;
-            PortRegistry.Delete();
         }
 
         private static int FindAvailablePort()
@@ -82,7 +112,7 @@ namespace Joker.UnityCli.Editor.ScriptServer
                 }
                 catch (HttpListenerException) { }
             }
-            throw new InvalidOperationException("Failed to find available port in range 63000-63099");
+            throw new InvalidOperationException("Failed to find available port in range 63000-63100");
         }
     }
 }

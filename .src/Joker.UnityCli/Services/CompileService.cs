@@ -37,9 +37,8 @@ public partial class CompileService : ICompileService
             return null;
 
         const string triggerScript = @"
-UnityEditor.AssetDatabase.Refresh(UnityEditor.ImportAssetOptions.ForceSynchronousImport);
-UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
-""triggered""";
+Joker.UnityCli.Editor.ScriptServer.HttpExecHandler.TriggerDelayedRecompile();
+""compile_triggered""";
 
         try
         {
@@ -52,21 +51,36 @@ UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
             return null;
         }
 
-        // Monitor for port change (indicates assembly reload = compilation succeeded)
+        // Monitor for compilation complete via status field or port change
         var deadline = stopwatch.Elapsed + TimeSpan.FromMilliseconds(timeoutMs);
         while (stopwatch.Elapsed < deadline)
         {
             ct.ThrowIfCancellationRequested();
 
-            var currentPort = TryReadServerPort(projectPath);
-            if (currentPort != null && currentPort != initialPort)
+            var serverInfo = TryReadServerInfo(projectPath);
+            if (serverInfo != null)
             {
-                return new CompileResult
+                // Status field present: compilation complete when status is "ready"
+                if (serverInfo.Status == "ready")
                 {
-                    Success = true,
-                    Status = "compiled",
-                    DurationMs = stopwatch.ElapsedMilliseconds
-                };
+                    return new CompileResult
+                    {
+                        Success = true,
+                        Status = "compiled",
+                        DurationMs = stopwatch.ElapsedMilliseconds
+                    };
+                }
+
+                // Status field absent (old format): fallback to port change detection
+                if (serverInfo.Status == null && serverInfo.Port != initialPort)
+                {
+                    return new CompileResult
+                    {
+                        Success = true,
+                        Status = "compiled",
+                        DurationMs = stopwatch.ElapsedMilliseconds
+                    };
+                }
             }
 
             await Task.Delay(2000, ct);
@@ -153,7 +167,24 @@ UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
         {
             var json = File.ReadAllText(portFile);
             var info = JsonSerializer.Deserialize<ServerInfo>(json, JsonOptions);
-            return info?.Port;
+            return info?.Port is > 0 ? info.Port : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    internal static ServerInfoFull? TryReadServerInfo(string projectPath)
+    {
+        var portFile = Path.Combine(projectPath, ".joker-unity", "server.json");
+        if (!File.Exists(portFile))
+            return null;
+
+        try
+        {
+            var json = File.ReadAllText(portFile);
+            return JsonSerializer.Deserialize<ServerInfoFull>(json, JsonOptions);
         }
         catch
         {
@@ -168,7 +199,9 @@ UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
 
         var errors = new List<string>();
 
-        foreach (var line in File.ReadLines(logPath))
+        using var stream = new FileStream(logPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        using var reader = new StreamReader(stream);
+        while (reader.ReadLine() is { } line)
         {
             var match = ErrorLineRegex().Match(line);
             if (match.Success)
@@ -197,6 +230,13 @@ UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
     private class ServerInfo
     {
         public int Port { get; set; }
+    }
+
+    internal class ServerInfoFull
+    {
+        public int Port { get; set; }
+        public int Pid { get; set; }
+        public string? Status { get; set; }
     }
 
     [GeneratedRegex(@"^(.+?)\((\d+),(\d+)\):\s+error\s+(CS\d+):\s+(.+)$")]

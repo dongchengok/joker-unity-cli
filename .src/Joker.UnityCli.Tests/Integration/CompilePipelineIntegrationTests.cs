@@ -18,8 +18,6 @@ public class CompilePipelineIntegrationTests : UnityIntegrationTestBase
     public async Task CompileAsync_TriggersCompilation_PortChanges()
     {
         SkipIfUnityNotRunning();
-        var initialPort = ServerPort!.Value;
-
         var unityLocator = new UnityLocator();
         var execService = new ExecService();
         var compileService = new CompileService(execService, unityLocator);
@@ -27,6 +25,9 @@ public class CompilePipelineIntegrationTests : UnityIntegrationTestBase
         var result = await compileService.CompileAsync(ProjectPath, 60000, CancellationToken.None);
         result.Should().NotBeNull();
         result.Status.Should().BeOneOf("compiled", "up_to_date");
+
+        // Wait for server to recover after potential domain reload
+        await WaitForServerReady(60000);
     }
 
     [SkippableFact]
@@ -35,14 +36,11 @@ public class CompilePipelineIntegrationTests : UnityIntegrationTestBase
         SkipIfUnityNotRunning();
         var execService = new ExecService();
 
-        // First verify exec works
         var before = await execService.ExecuteAsync(ProjectPath, "1+1", "script", 30000, CancellationToken.None);
         before.Success.Should().BeTrue();
 
-        // Read current port before triggering compilation
         var oldPort = ServerPort!.Value;
 
-        // Trigger compilation (which causes Domain Reload)
         var unityLocator = new UnityLocator();
         var compileService = new CompileService(execService, unityLocator);
         var compileTask = compileService.CompileAsync(ProjectPath, 60000, CancellationToken.None);
@@ -57,9 +55,10 @@ public class CompilePipelineIntegrationTests : UnityIntegrationTestBase
             await Task.Delay(500);
         }
 
-        // Try exec during/after Domain Reload - should retry and eventually succeed
         var result = await execService.ExecuteAsync(ProjectPath, "1+1", "script", 60000, CancellationToken.None);
         result.Success.Should().BeTrue();
+
+        await WaitForServerReady(60000);
     }
 
     [SkippableFact]
@@ -67,7 +66,6 @@ public class CompilePipelineIntegrationTests : UnityIntegrationTestBase
     {
         SkipIfUnityNotRunning();
         var execService = new ExecService();
-        // Send invalid code via compile mode (no file written to Assets/)
         var badCode = "public class BadScript { void Start() { this_is_an_error; } }";
         var result = await execService.ExecuteAsync(ProjectPath, badCode, "compile", 30000, CancellationToken.None);
         result.Success.Should().BeFalse();
@@ -102,8 +100,13 @@ public class BadScript2 { void B() { error_b; } }
         var result1 = await compileService.CompileAsync(ProjectPath, 60000, CancellationToken.None);
         result1.Should().NotBeNull();
 
+        // Wait for server recovery between compiles
+        await WaitForServerReady(60000);
+
         var result2 = await compileService.CompileAsync(ProjectPath, 60000, CancellationToken.None);
         result2.Should().NotBeNull();
+
+        await WaitForServerReady(60000);
     }
 
     [SkippableFact]
@@ -111,13 +114,20 @@ public class BadScript2 { void B() { error_b; } }
     {
         SkipIfUnityNotRunning();
         var execService = new ExecService();
+        // Use System.IO to exercise import fallback for non-default references
         var code = @"
 using System;
+using System.IO;
 public class Calc
 {
     public static string Execute()
     {
-        return (40 + 2).ToString();
+        var tempDir = Path.GetTempPath();
+        var tempFile = Path.Combine(tempDir, ""joker_test_"" + Guid.NewGuid().ToString(""N""));
+        File.WriteAllText(tempFile, ""42"");
+        var content = File.ReadAllText(tempFile);
+        File.Delete(tempFile);
+        return content;
     }
 }";
         var result = await execService.ExecuteAsync(ProjectPath, code, "compile", 30000, CancellationToken.None);
@@ -130,19 +140,27 @@ public class Calc
     {
         SkipIfUnityNotRunning();
         var execService = new ExecService();
+        // Use Vector3 math + LINQ aggregate to exercise multiple imports
         var code = @"
+using System;
+using System.Linq;
 using UnityEngine;
 public class VecTest
 {
     public static string Execute()
     {
-        var v = new Vector3(3, 4, 0);
-        return v.magnitude.ToString();
+        var vectors = new[] {
+            new Vector3(3, 4, 0),
+            new Vector3(0, 0, 5),
+            new Vector3(1, 0, 0)
+        };
+        var totalMag = vectors.Sum(v => v.magnitude);
+        return totalMag.ToString(""F0"");
     }
 }";
         var result = await execService.ExecuteAsync(ProjectPath, code, "compile", 30000, CancellationToken.None);
         result.Success.Should().BeTrue();
-        result.Result.Should().Be("5");
+        result.Result.Should().Be("8");
     }
 
     [SkippableFact]
@@ -150,20 +168,25 @@ public class VecTest
     {
         SkipIfUnityNotRunning();
         var execService = new ExecService();
+        // Use Regex + LINQ to exercise non-default imports
+        // Note: MatchCollection doesn't implement IEnumerable<T> on Unity 2019 Mono,
+        // so we use Cast<Match> before Select
         var code = @"
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 public static class StringTest
 {
     public static string Execute()
     {
-        var words = new[] { ""hello"", ""world"" };
-        return string.Join("" "", words.Select(w => w.ToUpper()));
+        var text = ""Hello123World456"";
+        var numbers = Regex.Matches(text, @""\d+"").Cast<Match>().Select(m => m.Value);
+        return string.Join("","", numbers);
     }
 }";
         var result = await execService.ExecuteAsync(ProjectPath, code, "compile", 30000, CancellationToken.None);
         result.Success.Should().BeTrue();
-        result.Result.Should().Be("HELLO WORLD");
+        result.Result.Should().Be("123,456");
     }
 
     [SkippableFact]
