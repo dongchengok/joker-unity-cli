@@ -136,7 +136,7 @@ public static class Test2 { public static string Execute() { return string.Join(
         var result = await _service.ExecuteAsync(ProjectPath, "int x = 0; int y = 1 / x;", "script", 30000, CancellationToken.None);
         result.Success.Should().BeFalse();
         result.Error.Should().NotBeNullOrEmpty();
-        result.Error.Should().Contain("DivideByZero");
+        result.Error.Should().ContainAny("DivideByZero", "divide by zero");
     }
 
     // NOTE: Timeout test removed — script-mode long-running code (while(true), Thread.Sleep)

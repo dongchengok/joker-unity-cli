@@ -74,6 +74,12 @@ public class CompileCommand : AsyncCommand<CompileCommand.Settings>
             return 0;
         }
 
+        if (result.Status == "server_not_found")
+        {
+            AnsiConsole.MarkupLine("[red]Error:[/] Unity Editor is not running. Open the Unity Editor project first.");
+            return 1;
+        }
+
         if (result.Status == "timeout")
         {
             AnsiConsole.MarkupLine("[red]Error:[/] Compilation timed out.");

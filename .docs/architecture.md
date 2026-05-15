@@ -38,7 +38,7 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具，
 
 - **Commands/** — Spectre 命令定义，只做参数解析和调用 Service
 - **Services/** — 核心业务逻辑，可独立测试，不依赖 Spectre
-- **Unity 交互** — 文件系统读写 + Unity.exe batch mode 调用
+- **Unity 交互** — 文件系统读写 + Unity.exe batch mode 调用（仅构建命令）
 
 ## 模块划分
 
@@ -51,7 +51,7 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具，
 | AssetService | 列出/搜索 Assets 目录下的资源 | .meta 文件解析 GUID |
 | BuildService | 拼接 Unity batch mode 参数并执行 | Process 调用 Unity.exe |
 | ExecService | 通过 HTTP 执行 C# 代码，状态感知智能重试 | .joker-unity/server.json |
-| CompileService | 触发脚本编译，TCP 优先 + batchmode 回退 | .joker-unity/server.json |
+| CompileService | 通过 HTTP 触发脚本重编译（需要运行中的 Unity Editor） | .joker-unity/server.json |
 | StatusService | 查询 Unity Editor 服务器状态 | .joker-unity/server.json |
 
 ### Commands

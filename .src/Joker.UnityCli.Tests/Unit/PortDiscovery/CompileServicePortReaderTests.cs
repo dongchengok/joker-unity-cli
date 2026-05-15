@@ -9,47 +9,49 @@ namespace Joker.UnityCli.Tests.Unit.PortDiscovery;
 public class CompileServicePortReaderTests
 {
     [Fact]
-    public void TryReadServerPort_ValidFile_ReturnsPort()
+    public void TryReadServerInfo_ValidFile_ReturnsPort()
     {
         using var fixture = new TempProjectFixture();
         fixture.WriteServerJson(12345);
 
-        var port = CompileService.TryReadServerPort(fixture.ProjectPath);
+        var info = CompileService.TryReadServerInfo(fixture.ProjectPath);
 
-        port.Should().Be(12345);
+        info.Should().NotBeNull();
+        info!.Port.Should().Be(12345);
     }
 
     [Fact]
-    public void TryReadServerPort_NoFile_ReturnsNull()
+    public void TryReadServerInfo_NoFile_ReturnsNull()
     {
         using var fixture = new TempProjectFixture();
 
-        var port = CompileService.TryReadServerPort(fixture.ProjectPath);
+        var info = CompileService.TryReadServerInfo(fixture.ProjectPath);
 
-        port.Should().BeNull();
+        info.Should().BeNull();
     }
 
     [Fact]
-    public void TryReadServerPort_InvalidJson_ReturnsNull()
+    public void TryReadServerInfo_InvalidJson_ReturnsNull()
     {
         using var fixture = new TempProjectFixture();
         var jokerDir = Path.Combine(fixture.ProjectPath, ".joker-unity");
         Directory.CreateDirectory(jokerDir);
         File.WriteAllText(Path.Combine(jokerDir, "server.json"), "invalid json");
 
-        var port = CompileService.TryReadServerPort(fixture.ProjectPath);
+        var info = CompileService.TryReadServerInfo(fixture.ProjectPath);
 
-        port.Should().BeNull();
+        info.Should().BeNull();
     }
 
     [Fact]
-    public void TryReadServerPort_ZeroPort_ReturnsNull()
+    public void TryReadServerInfo_ZeroPort_ReturnsPortZero()
     {
         using var fixture = new TempProjectFixture();
         fixture.WriteServerJson(0);
 
-        var port = CompileService.TryReadServerPort(fixture.ProjectPath);
+        var info = CompileService.TryReadServerInfo(fixture.ProjectPath);
 
-        port.Should().BeNull("because port 0 is not valid");
+        info.Should().NotBeNull();
+        info!.Port.Should().Be(0);
     }
 }

@@ -79,7 +79,10 @@ namespace Joker.UnityCli.Editor.ScriptExecution
                             {
                                 var asm = Assembly.Load(fix.Detail);
                                 if (!string.IsNullOrEmpty(asm.Location))
-                                    references.Add(MetadataReference.CreateFromFile(asm.Location));
+                                {
+                                    var bytes = File.ReadAllBytes(asm.Location);
+                                    references.Add(MetadataReference.CreateFromImage(bytes));
+                                }
                             }
                             catch { }
                         }

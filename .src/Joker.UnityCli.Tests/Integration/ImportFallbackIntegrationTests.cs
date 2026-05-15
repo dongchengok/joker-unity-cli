@@ -116,7 +116,7 @@ public class Test
         SkipIfUnityNotRunning();
         // Regex is not in default references — fallback should resolve System assembly
         var code = @"using System.Text.RegularExpressions;
-var r = new Regex(""\d+"");
+var r = new Regex(@""\d+"");
 r.Matches(""abc123def456"").Count.ToString()";
         var result = await _exec.ExecuteAsync(ProjectPath, code, "script", 30000, CancellationToken.None);
         result.Success.Should().BeTrue();

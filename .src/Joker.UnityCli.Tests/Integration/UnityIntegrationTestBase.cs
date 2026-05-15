@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Joker.UnityCli.Services;
 using Xunit;
 
@@ -7,9 +8,27 @@ public abstract class UnityIntegrationTestBase : IDisposable
 {
     protected string ProjectPath { get; }
 
-    protected int? ServerPort => CompileService.TryReadServerPort(ProjectPath);
+    protected int? ServerPort => CompileService.TryReadServerInfo(ProjectPath)?.Port;
 
-    protected bool IsUnityRunning => ServerPort != null;
+    protected bool IsUnityRunning
+    {
+        get
+        {
+            var info = CompileService.TryReadServerInfo(ProjectPath);
+            if (info == null || info.Port <= 0)
+                return false;
+
+            try
+            {
+                var process = Process.GetProcessById(info.Pid);
+                return !process.HasExited;
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+        }
+    }
 
     protected UnityIntegrationTestBase()
     {

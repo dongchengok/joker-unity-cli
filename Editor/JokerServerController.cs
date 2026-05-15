@@ -55,6 +55,7 @@ namespace Joker.UnityCli.Editor
         {
             HttpExecHandler.IsCompiling = true;
             PortRegistry.WriteStatus("compiling");
+            HttpExecHandler.WaitForScriptTasks(TimeSpan.FromSeconds(3));
             Stop();
             GC.Collect();
             GC.WaitForPendingFinalizers();

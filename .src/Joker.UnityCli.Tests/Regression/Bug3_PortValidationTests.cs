@@ -1,4 +1,3 @@
-using System.IO;
 using FluentAssertions;
 using Joker.UnityCli.Services;
 using Joker.UnityCli.Tests.Infrastructure;
@@ -38,24 +37,26 @@ public class Bug3_PortValidationTests
     }
 
     [Fact]
-    public void TryReadServerPort_ZeroPort_ReturnsNull()
+    public void TryReadServerInfo_ZeroPort_ReturnsPortZero()
     {
         using var fixture = new TempProjectFixture();
         fixture.WriteServerJson(0);
 
-        var result = CompileService.TryReadServerPort(fixture.ProjectPath);
+        var info = CompileService.TryReadServerInfo(fixture.ProjectPath);
 
-        result.Should().BeNull("port 0 is not a valid server port");
+        info.Should().NotBeNull("port 0 should still be deserialized");
+        info!.Port.Should().Be(0);
     }
 
     [Fact]
-    public void TryReadServerPort_NegativePort_ReturnsNull()
+    public void TryReadServerInfo_NegativePort_ReturnsNegativePort()
     {
         using var fixture = new TempProjectFixture();
         fixture.WriteServerJson(-1);
 
-        var result = CompileService.TryReadServerPort(fixture.ProjectPath);
+        var info = CompileService.TryReadServerInfo(fixture.ProjectPath);
 
-        result.Should().BeNull("negative port is not a valid server port");
+        info.Should().NotBeNull("negative port should still be deserialized");
+        info!.Port.Should().Be(-1);
     }
 }

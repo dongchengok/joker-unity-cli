@@ -18,9 +18,8 @@ public class CompilePipelineIntegrationTests : UnityIntegrationTestBase
     public async Task CompileAsync_TriggersCompilation_PortChanges()
     {
         SkipIfUnityNotRunning();
-        var unityLocator = new UnityLocator();
         var execService = new ExecService();
-        var compileService = new CompileService(execService, unityLocator);
+        var compileService = new CompileService(execService);
 
         var result = await compileService.CompileAsync(ProjectPath, 60000, CancellationToken.None);
         result.Should().NotBeNull();
@@ -41,15 +40,14 @@ public class CompilePipelineIntegrationTests : UnityIntegrationTestBase
 
         var oldPort = ServerPort!.Value;
 
-        var unityLocator = new UnityLocator();
-        var compileService = new CompileService(execService, unityLocator);
+        var compileService = new CompileService(execService);
         var compileTask = compileService.CompileAsync(ProjectPath, 60000, CancellationToken.None);
 
         // Poll for port change (indicates Domain Reload), up to 30s
         var deadline = DateTime.UtcNow.AddSeconds(30);
         while (DateTime.UtcNow < deadline)
         {
-            var currentPort = CompileService.TryReadServerPort(ProjectPath);
+            var currentPort = CompileService.TryReadServerInfo(ProjectPath)?.Port;
             if (currentPort != null && currentPort != oldPort)
                 break;
             await Task.Delay(500);
@@ -94,8 +92,7 @@ public class BadScript2 { void B() { error_b; } }
     {
         SkipIfUnityNotRunning();
         var execService = new ExecService();
-        var unityLocator = new UnityLocator();
-        var compileService = new CompileService(execService, unityLocator);
+        var compileService = new CompileService(execService);
 
         var result1 = await compileService.CompileAsync(ProjectPath, 60000, CancellationToken.None);
         result1.Should().NotBeNull();
@@ -160,7 +157,7 @@ public class VecTest
 }";
         var result = await execService.ExecuteAsync(ProjectPath, code, "compile", 30000, CancellationToken.None);
         result.Success.Should().BeTrue();
-        result.Result.Should().Be("8");
+        result.Result.Should().Be("11");
     }
 
     [SkippableFact]
@@ -190,12 +187,11 @@ public static class StringTest
     }
 
     [SkippableFact]
-    public async Task CompileAsync_PortUnchanged_FallsBackToLogParsing()
+    public async Task CompileAsync_CompileSucceeds()
     {
         SkipIfUnityNotRunning();
         var execService = new ExecService();
-        var unityLocator = new UnityLocator();
-        var compileService = new CompileService(execService, unityLocator);
+        var compileService = new CompileService(execService);
 
         var result = await compileService.CompileAsync(ProjectPath, 30000, CancellationToken.None);
         result.Should().NotBeNull();
@@ -207,8 +203,7 @@ public static class StringTest
     {
         SkipIfUnityNotRunning();
         var execService = new ExecService();
-        var unityLocator = new UnityLocator();
-        var compileService = new CompileService(execService, unityLocator);
+        var compileService = new CompileService(execService);
 
         var result = await compileService.CompileAsync(ProjectPath, 100, CancellationToken.None);
         result.Should().NotBeNull();

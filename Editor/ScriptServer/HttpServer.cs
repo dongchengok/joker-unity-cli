@@ -83,6 +83,8 @@ namespace Joker.UnityCli.Editor.ScriptServer
             {
                 try { Task.WaitAll(tasks.ToArray(), TimeSpan.FromSeconds(3)); } catch { }
             }
+            // Clear completed handler tasks so their closures become eligible for GC
+            while (_handlerTasks.TryTake(out _)) { }
 
             // Wait for ScriptExecutor tasks started from EditorApplication.update callbacks
             HttpExecHandler.WaitForScriptTasks(TimeSpan.FromSeconds(3));

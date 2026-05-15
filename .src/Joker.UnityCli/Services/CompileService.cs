@@ -9,32 +9,29 @@ namespace Joker.UnityCli.Services;
 public partial class CompileService : ICompileService
 {
     private readonly IExecService _execService;
-    private readonly IUnityLocator _unityLocator;
 
-    public CompileService(IExecService execService, IUnityLocator unityLocator)
+    public CompileService(IExecService execService)
     {
         _execService = execService;
-        _unityLocator = unityLocator;
     }
 
     public async Task<CompileResult> CompileAsync(string projectPath, int timeoutMs, CancellationToken ct)
     {
         var stopwatch = Stopwatch.StartNew();
 
-        // Try TCP path first
-        var tcpResult = await TryCompileViaTcpAsync(projectPath, timeoutMs, stopwatch, ct);
-        if (tcpResult != null)
-            return tcpResult;
+        var serverInfo = TryReadServerInfo(projectPath);
+        if (serverInfo == null || serverInfo.Port <= 0)
+        {
+            return new CompileResult
+            {
+                Success = false,
+                Status = "server_not_found",
+                Errors = ["Unity Editor is not running. Open the Unity Editor project first."],
+                DurationMs = stopwatch.ElapsedMilliseconds
+            };
+        }
 
-        // Fallback: batchmode
-        return await CompileViaBatchmodeAsync(projectPath, timeoutMs, stopwatch, ct);
-    }
-
-    private async Task<CompileResult?> TryCompileViaTcpAsync(string projectPath, int timeoutMs, Stopwatch stopwatch, CancellationToken ct)
-    {
-        var initialPort = TryReadServerPort(projectPath);
-        if (initialPort == null)
-            return null;
+        var initialPort = serverInfo.Port;
 
         const string triggerScript = @"
 Joker.UnityCli.Editor.ScriptServer.HttpExecHandler.TriggerDelayedRecompile();
@@ -44,11 +41,25 @@ Joker.UnityCli.Editor.ScriptServer.HttpExecHandler.TriggerDelayedRecompile();
         {
             var triggerResult = await _execService.ExecuteAsync(projectPath, triggerScript, "script", 30000, ct);
             if (!triggerResult.Success)
-                return null;
+            {
+                return new CompileResult
+                {
+                    Success = false,
+                    Status = "failed",
+                    Errors = [$"Failed to trigger compilation: {triggerResult.Error}"],
+                    DurationMs = stopwatch.ElapsedMilliseconds
+                };
+            }
         }
-        catch
+        catch (Exception ex)
         {
-            return null;
+            return new CompileResult
+            {
+                Success = false,
+                Status = "failed",
+                Errors = [$"Failed to trigger compilation: {ex.Message}"],
+                DurationMs = stopwatch.ElapsedMilliseconds
+            };
         }
 
         // Monitor for compilation complete via status field or port change
@@ -57,11 +68,11 @@ Joker.UnityCli.Editor.ScriptServer.HttpExecHandler.TriggerDelayedRecompile();
         {
             ct.ThrowIfCancellationRequested();
 
-            var serverInfo = TryReadServerInfo(projectPath);
-            if (serverInfo != null)
+            var currentInfo = TryReadServerInfo(projectPath);
+            if (currentInfo != null)
             {
                 // Status field present: compilation complete when status is "ready"
-                if (serverInfo.Status == "ready")
+                if (currentInfo.Status == "ready")
                 {
                     return new CompileResult
                     {
@@ -72,7 +83,7 @@ Joker.UnityCli.Editor.ScriptServer.HttpExecHandler.TriggerDelayedRecompile();
                 }
 
                 // Status field absent (old format): fallback to port change detection
-                if (serverInfo.Status == null && serverInfo.Port != initialPort)
+                if (currentInfo.Status == null && currentInfo.Port != initialPort)
                 {
                     return new CompileResult
                     {
@@ -97,82 +108,6 @@ Joker.UnityCli.Editor.ScriptServer.HttpExecHandler.TriggerDelayedRecompile();
             Errors = errors,
             DurationMs = stopwatch.ElapsedMilliseconds
         };
-    }
-
-#pragma warning disable CS1998
-    private async Task<CompileResult> CompileViaBatchmodeAsync(string projectPath, int timeoutMs, Stopwatch stopwatch, CancellationToken ct)
-    {
-        var unity = _unityLocator.Locate();
-        if (unity == null)
-        {
-            return new CompileResult
-            {
-                Success = false,
-                Status = "failed",
-                Errors = ["Unity installation not found"],
-                DurationMs = stopwatch.ElapsedMilliseconds
-            };
-        }
-
-        var tempLog = Path.Combine(Path.GetTempPath(), $"joker-compile-{Guid.NewGuid():N}.log");
-
-        try
-        {
-            var startInfo = new ProcessStartInfo
-            {
-                FileName = unity.Path,
-                Arguments = $"-batchmode -quit -projectPath \"{projectPath}\" -logFile \"{tempLog}\"",
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
-
-            using var process = Process.Start(startInfo)
-                ?? throw new InvalidOperationException("Failed to start Unity");
-
-            var remaining = timeoutMs - (int)stopwatch.ElapsedMilliseconds;
-            if (remaining <= 0 || !process.WaitForExit(remaining))
-            {
-                try { process.Kill(); } catch { }
-                return new CompileResult
-                {
-                    Success = false,
-                    Status = "timeout",
-                    DurationMs = stopwatch.ElapsedMilliseconds
-                };
-            }
-
-            var errors = ParseLogForErrors(tempLog);
-            return new CompileResult
-            {
-                Success = errors.Count == 0,
-                Status = errors.Count == 0 ? "compiled" : "failed",
-                Errors = errors,
-                DurationMs = stopwatch.ElapsedMilliseconds
-            };
-        }
-        finally
-        {
-            if (File.Exists(tempLog))
-                try { File.Delete(tempLog); } catch { }
-        }
-    }
-
-    internal static int? TryReadServerPort(string projectPath)
-    {
-        var portFile = Path.Combine(projectPath, ".joker-unity", "server.json");
-        if (!File.Exists(portFile))
-            return null;
-
-        try
-        {
-            var json = File.ReadAllText(portFile);
-            var info = JsonSerializer.Deserialize<ServerInfo>(json, JsonOptions);
-            return info?.Port is > 0 ? info.Port : null;
-        }
-        catch
-        {
-            return null;
-        }
     }
 
     internal static ServerInfoFull? TryReadServerInfo(string projectPath)
@@ -226,11 +161,6 @@ Joker.UnityCli.Editor.ScriptServer.HttpExecHandler.TriggerDelayedRecompile();
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
     };
-
-    private class ServerInfo
-    {
-        public int Port { get; set; }
-    }
 
     internal class ServerInfoFull
     {
