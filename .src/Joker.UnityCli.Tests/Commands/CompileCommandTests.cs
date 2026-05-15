@@ -9,6 +9,7 @@ using Xunit;
 
 namespace Joker.UnityCli.Tests.Commands;
 
+[Collection("ConsoleOutput")]
 public class CompileCommandTests
 {
     [Fact]

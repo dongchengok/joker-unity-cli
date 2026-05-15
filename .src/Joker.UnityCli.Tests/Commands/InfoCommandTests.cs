@@ -8,6 +8,7 @@ using Spectre.Console.Cli;
 
 namespace Joker.UnityCli.Tests.Commands;
 
+[Collection("ConsoleOutput")]
 public class InfoCommandTests
 {
     private static CommandApp CreateApp(IProjectDetector projectDetector)

@@ -32,7 +32,7 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具（
 - **语言：** C# / .NET 8+
 - **CLI 框架：** Spectre.Console.Cli
 - **测试框架：** xUnit + FluentAssertions
-- **Unity 交互：** 文件系统读写 + Unity.exe batch mode（仅构建）+ HTTP 脚本执行（Roslyn Scripting 3.8.0）
+- **Unity 交互：** 文件系统读写 + Unity.exe batch mode + HTTP 脚本执行（Roslyn Scripting 3.8.0）
 
 ## 编码规范（摘要）
 
@@ -44,19 +44,15 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具（
 
 ## 架构概览（摘要）
 
-- CLI 入口（Program.cs）→ Spectre 命令解析 → Service 层 → 文件系统/Unity.exe/HTTP
+- CLI 入口（Program.cs）→ Spectre 命令解析 → Service 层 → 文件系统/Unity.exe/TCP
 - Commands 层：参数解析 + 输出格式化（文本/JSON）
 - Services 层：核心业务逻辑，可独立测试
-- Unity Editor 侧：HTTP 服务器（`[InitializeOnLoad]` 自启动）+ Roslyn 脚本执行
-- build 命令通过 Unity.exe batch mode 执行构建（唯一使用 batch mode 的命令）
-- exec 命令通过 HTTP 连接 Unity Editor 内置服务器，支持 script（语句级）和 compile（完整文件）两种模式
-- compile 命令通过 HTTP 触发 Unity Editor 重编译（需要运行中的 Unity Editor）
-- compile 触发域重载时，在调用 `RequestScriptCompilation()` 前完成所有引用清理（`WaitForScriptTasks` → `HttpServer.Stop` → 等待 OS 释放文件句柄），避免 DLL 锁定
+- Unity Editor 侧：TCP 服务器（`[InitializeOnLoad]` 自启动）+ Roslyn 脚本执行
+- exec 命令通过 TCP 连接 Unity Editor 内置服务器，支持 script（语句级）和 compile（完整文件）两种模式
 - status 命令查询 Unity Editor 服务器状态（ready/compiling/stopped），支持 `--json` 输出
 - server.json（`.joker-unity/server.json`）记录端口、PID 和状态（ready/compiling/stopped）
 - ExecResult 包含结构化错误码（ErrorCode）和异常堆栈（ErrorDetail），供 AI 智能体程序化处理
 - ExecService 具备状态感知智能重试：编译中等待、服务器不存在快速失败、最大 10 次重试
-- HttpExecHandler 使用 `Interlocked.CompareExchange` 原子执行锁，防止并发请求穿透到 Unity 主线程
 - 开发测试在 `.Unity2019/`（2019.4）和 `.Unity2021/`（2021.3）两个 Unity 工程中进行
 - 详细架构见 `.docs/architecture.md`，修改代码前须先了解当前架构
 
@@ -72,10 +68,10 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具（
 ├── package.json           # UPM 包清单
 ├── Editor/                # Unity Editor 集成
 │   ├── Models/            # ExecRequest, ExecResult（含 ErrorCode, ErrorDetail）
-│   ├── ScriptServer/      # HTTP 服务器 + 端口注册 + 编译状态信号 + 并发控制
+│   ├── ScriptServer/      # HTTP 服务器 + 端口注册 + 编译状态信号
 │   ├── ScriptExecution/   # Roslyn 脚本执行器（含引用过滤和错误分析）
 │   ├── Plugins/Roslyn/    # Roslyn 3.8.0 DLL（Editor-only）
-│   └── JokerServerController.cs  # [InitializeOnLoad] 自启动 + 编译生命周期管理 + 域重载前清理
+│   └── JokerServerController.cs  # [InitializeOnLoad] 自启动 + 编译生命周期管理
 ├── Runtime/               # Runtime 代码
 ├── Tests/                 # Unity 测试
 └── Tools~/                # 预编译 CLI 二进制（构建产物）

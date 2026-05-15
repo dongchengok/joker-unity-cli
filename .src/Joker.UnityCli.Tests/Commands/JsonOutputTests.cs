@@ -10,6 +10,7 @@ using Spectre.Console.Cli;
 
 namespace Joker.UnityCli.Tests.Commands;
 
+[Collection("ConsoleOutput")]
 public class JsonOutputTests
 {
     private static readonly JsonSerializerOptions JsonSerializerOptions = new()
