@@ -1,0 +1,9 @@
+{
+  "version": "0.1.0",
+  "skills": [
+    { "name": "unity-build", "directory": "unity-build" },
+    { "name": "unity-code", "directory": "unity-code" },
+    { "name": "unity-compile", "directory": "unity-compile" },
+    { "name": "unity-project", "directory": "unity-project" }
+  ]
+}

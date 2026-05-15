@@ -50,8 +50,8 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具，
 | UnityLocator | 查找本机 Unity 安装路径 | Hub/Editor/ 目录扫描 |
 | AssetService | 列出/搜索 Assets 目录下的资源 | .meta 文件解析 GUID |
 | BuildService | 拼接 Unity batch mode 参数并执行 | Process 调用 Unity.exe |
-| ExecService | 通过 HTTP 执行 C# 代码，状态感知智能重试 | .joker-unity/server.json |
-| CompileService | 通过 HTTP 触发脚本重编译（需要运行中的 Unity Editor） | .joker-unity/server.json |
+| ExecService | 通过 HTTP 执行 C# 代码，状态感知智能重试（并发原子锁 + 编译状态感知） | .joker-unity/server.json |
+| CompileService | 通过 HTTP 触发脚本重编译（需要运行中的 Unity Editor，无 batch mode 回退） | .joker-unity/server.json |
 | StatusService | 查询 Unity Editor 服务器状态 | .joker-unity/server.json |
 
 ### Commands
@@ -90,6 +90,8 @@ joker-unity-cli 是一个 Unity UPM 插件包，提供独立终端 CLI 工具，
 | server.json 状态信号（ready/compiling/stopped） | CLI 能区分"Unity 编译中"和"未启动"，实现智能重试 |
 | ExecResult 结构化错误码（ErrorCode + ErrorDetail） | AI 智能体可程序化处理错误，而非解析自由文本 |
 | ScriptExecutor 引用过滤（排除 facade DLL） | 避免 CS0433 类型冲突，提高脚本执行成功率 |
+| 编译前确定性清理（WaitForScriptTasks + HttpServer.Stop + _handlerTasks 清理） | 避免 DLL 锁定导致域重载失败 |
+| Interlocked.CompareExchange 原子执行锁 | 防止并发请求穿透到 Unity 主线程 |
 
 ## 测试
 

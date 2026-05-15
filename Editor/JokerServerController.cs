@@ -1,4 +1,5 @@
 using System;
+using Joker.UnityCli.Editor.ClaudeIntegration;
 using Joker.UnityCli.Editor.ScriptServer;
 using UnityEditor;
 using UnityEngine;
@@ -31,6 +32,8 @@ namespace Joker.UnityCli.Editor
 
             if (AutoStart)
                 HttpServer.Start();
+
+            ClaudeSkillInstaller.AutoInstall();
         }
 
         public static void Start()

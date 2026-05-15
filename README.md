@@ -155,7 +155,7 @@ joker-unity exec <CODE> [选项]
 joker-unity exec --file <PATH> [选项]
 ```
 
-**前提条件：** Unity Editor 必须打开目标项目（CLI 自动通过 TCP 连接到 Editor 内置的脚本服务器）。
+**前提条件：** Unity Editor 必须打开目标项目（CLI 通过 HTTP 连接到 Editor 内置的脚本服务器）。
 
 **参数：**
 
